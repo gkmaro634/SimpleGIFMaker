@@ -1,4 +1,5 @@
 using SimpleGIFMaker.Domains;
+using SimpleGIFMaker.Domains.Repositories;
 using System;
 using Xunit;
 

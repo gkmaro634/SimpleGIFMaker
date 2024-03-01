@@ -1,5 +1,4 @@
-﻿
-namespace SimpleGIFMaker.Domains
+﻿namespace SimpleGIFMaker.Domains
 {
     public class Movie
     {
