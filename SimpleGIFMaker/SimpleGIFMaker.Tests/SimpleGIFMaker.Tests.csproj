@@ -22,13 +22,18 @@
 
   <ItemGroup>
     <Folder Include="DataSource\" />
-    <Folder Include="Domains\" />
     <Folder Include="UserInterfaces\" />
     <Folder Include="UseCases\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SimpleGIFMaker.Domains\SimpleGIFMaker.Domains.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="testdata\V_20240229_162423_ES0.mp4">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
