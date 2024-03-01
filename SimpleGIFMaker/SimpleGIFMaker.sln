@@ -5,9 +5,13 @@ VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleGIFMaker", "SimpleGIFMaker\SimpleGIFMaker.csproj", "{EB2EC7BC-B066-4BB3-BBDC-9E3801A472FD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleGIFMaker.Domains.Tests", "SimpleGIFMaker.Domains.Tests\SimpleGIFMaker.Domains.Tests.csproj", "{247699CC-6395-4104-ADE6-955E24CAD54B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleGIFMaker.Domains", "SimpleGIFMaker.Domains\SimpleGIFMaker.Domains.csproj", "{1964F028-76C1-4CEA-865A-45CA8408E9C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleGIFMaker.Domains", "SimpleGIFMaker.Domains\SimpleGIFMaker.Domains.csproj", "{4307FD32-3A8B-4455-AC2D-12548D3DEE81}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleGIFMaker.DataSource.Fake", "SimpleGIFMaker.DataSource.Fake\SimpleGIFMaker.DataSource.Fake.csproj", "{82ABA943-6841-47D8-B003-8924E41FDBA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleGIFMaker.DataSource.FileSystem", "SimpleGIFMaker.DataSource.FileSystem\SimpleGIFMaker.DataSource.FileSystem.csproj", "{7E575162-A34C-41A5-849A-56511C2C3BDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleGIFMaker.Tests", "SimpleGIFMaker.Tests\SimpleGIFMaker.Tests.csproj", "{0C1C4CC9-3F29-4C29-972E-8214B82D72DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,14 +25,22 @@ Global
 		{EB2EC7BC-B066-4BB3-BBDC-9E3801A472FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB2EC7BC-B066-4BB3-BBDC-9E3801A472FD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EB2EC7BC-B066-4BB3-BBDC-9E3801A472FD}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{247699CC-6395-4104-ADE6-955E24CAD54B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{247699CC-6395-4104-ADE6-955E24CAD54B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{247699CC-6395-4104-ADE6-955E24CAD54B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{247699CC-6395-4104-ADE6-955E24CAD54B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4307FD32-3A8B-4455-AC2D-12548D3DEE81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4307FD32-3A8B-4455-AC2D-12548D3DEE81}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4307FD32-3A8B-4455-AC2D-12548D3DEE81}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4307FD32-3A8B-4455-AC2D-12548D3DEE81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1964F028-76C1-4CEA-865A-45CA8408E9C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1964F028-76C1-4CEA-865A-45CA8408E9C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1964F028-76C1-4CEA-865A-45CA8408E9C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1964F028-76C1-4CEA-865A-45CA8408E9C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82ABA943-6841-47D8-B003-8924E41FDBA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82ABA943-6841-47D8-B003-8924E41FDBA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82ABA943-6841-47D8-B003-8924E41FDBA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82ABA943-6841-47D8-B003-8924E41FDBA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E575162-A34C-41A5-849A-56511C2C3BDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E575162-A34C-41A5-849A-56511C2C3BDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E575162-A34C-41A5-849A-56511C2C3BDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E575162-A34C-41A5-849A-56511C2C3BDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C1C4CC9-3F29-4C29-972E-8214B82D72DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C1C4CC9-3F29-4C29-972E-8214B82D72DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C1C4CC9-3F29-4C29-972E-8214B82D72DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C1C4CC9-3F29-4C29-972E-8214B82D72DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
