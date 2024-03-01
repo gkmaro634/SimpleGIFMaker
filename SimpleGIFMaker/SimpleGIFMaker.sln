@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34622.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleGIFMaker", "SimpleGIFMaker\SimpleGIFMaker.csproj", "{EB2EC7BC-B066-4BB3-BBDC-9E3801A472FD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EB2EC7BC-B066-4BB3-BBDC-9E3801A472FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB2EC7BC-B066-4BB3-BBDC-9E3801A472FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB2EC7BC-B066-4BB3-BBDC-9E3801A472FD}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{EB2EC7BC-B066-4BB3-BBDC-9E3801A472FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB2EC7BC-B066-4BB3-BBDC-9E3801A472FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB2EC7BC-B066-4BB3-BBDC-9E3801A472FD}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DDA33AA0-720E-4E13-A668-4875096137E4}
+	EndGlobalSection
+EndGlobal
