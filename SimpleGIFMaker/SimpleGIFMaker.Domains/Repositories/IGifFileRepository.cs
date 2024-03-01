@@ -8,7 +8,7 @@ namespace SimpleGIFMaker.Domains.Repositories
 {
     public interface IGifFileRepository
     {
-        Task<GifFile> GetGifFileAsync(int id);
+        Task<GifFile?> GetGifFileAsync(int id);
 
         Task UpdateGifFileAsync(int id, GifFile gifFile);
 

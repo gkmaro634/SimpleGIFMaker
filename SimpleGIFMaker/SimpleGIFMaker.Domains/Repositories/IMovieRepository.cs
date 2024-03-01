@@ -8,7 +8,7 @@ namespace SimpleGIFMaker.Domains.Repositories
 {
     public interface IMovieRepository
     {
-        Task<GifFile> GetMovieAsync(int id);
+        Task<Movie> GetMovieAsync(int id);
 
         //Task UpdateMovieAsync(int id, Movie movie);
 
