@@ -1,5 +1,9 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
+using SimpleGIFMaker.ViewModels;
+using SimpleGIFMaker.Views;
+using SimpleGIFMaker.Domains.Repositories;
+using SimpleGIFMaker.DataSource.Fake;
 
 namespace SimpleGIFMaker
 {
@@ -17,8 +21,20 @@ namespace SimpleGIFMaker
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            builder.Services.AddSingleton<EditPage>();
+            builder.Services.AddSingleton<ContentGalleryPage>();
+            builder.Services.AddSingleton<DirectoryExplorerPage>();
+
+            builder.Services.AddSingleton<EditPageViewModel>();
+            builder.Services.AddSingleton<ContentGalleryPageViewModel>();
+            builder.Services.AddSingleton<DirectoryExplorerPageViewModel>();
+
+            builder.Services.AddSingleton<IMovieRepository, FakeMovieRepository>();
+            builder.Services.AddSingleton<IConvertConditionRepository, FakeConvertConditionRepository>();
+            builder.Services.AddSingleton<IGifFileRepository, FakeGifFileRepository>();
+
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
             //builder.UseMauiApp<App>().UseMauiCommunityToolkit();
 
