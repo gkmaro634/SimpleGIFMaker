@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CommunityToolkit.Maui;
+using Microsoft.Extensions.Logging;
 
 namespace SimpleGIFMaker
 {
@@ -9,6 +10,7 @@ namespace SimpleGIFMaker
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseMauiCommunityToolkit()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -18,6 +20,7 @@ namespace SimpleGIFMaker
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+            //builder.UseMauiApp<App>().UseMauiCommunityToolkit();
 
             return builder.Build();
         }
