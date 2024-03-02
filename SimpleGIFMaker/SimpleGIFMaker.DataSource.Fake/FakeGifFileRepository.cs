@@ -13,13 +13,15 @@ namespace SimpleGIFMaker.DataSource.Fake
 
         public Task AddGifFileAsync(GifFile gifFile)
         {
+            gifFile.Id = 0;
+            this.gifFiles.Clear();
             this.gifFiles.Add(gifFile);
             return Task.CompletedTask;
         }
 
-        public Task DeleteGifFileAsync(int _)
+        public Task DeleteGifFileAsync(int id)
         {
-            var toDelete = this.gifFiles.FirstOrDefault();
+            var toDelete = this.gifFiles.FirstOrDefault(f => f.Id == id);
             if (toDelete is not null)
             {
                 this.gifFiles.Remove(toDelete);
@@ -28,9 +30,9 @@ namespace SimpleGIFMaker.DataSource.Fake
             return Task.CompletedTask;
         }
 
-        public Task<GifFile?> GetGifFileAsync(int _)
+        public Task<GifFile?> GetGifFileAsync(int id)
         {
-            var toReturn = this.gifFiles.FirstOrDefault();
+            var toReturn = this.gifFiles.FirstOrDefault(f => f.Id == id);
             if (toReturn is not null)
             {
                 return Task.FromResult<GifFile?>(toReturn);
@@ -39,13 +41,10 @@ namespace SimpleGIFMaker.DataSource.Fake
             return Task.FromResult<GifFile?>(null);
         }
 
-        public Task UpdateGifFileAsync(int _, GifFile gifFile)
+        public Task UpdateGifFileAsync(int id, GifFile gifFile)
         {
-            var toUpdate = this.gifFiles.FirstOrDefault();
-            if (toUpdate is not null)
-            {
-                // TODO
-            }
+            this.DeleteGifFileAsync(id);
+            this.AddGifFileAsync(gifFile);
 
             return Task.CompletedTask;
         }

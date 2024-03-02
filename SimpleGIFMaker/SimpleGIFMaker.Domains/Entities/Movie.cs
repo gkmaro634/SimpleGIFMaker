@@ -4,6 +4,8 @@ namespace SimpleGIFMaker.Domains
 {
     public class Movie
     {
+        public int Id { get; set; }
+
         public string Path { get; set; }
 
         public int Width { get; set; }

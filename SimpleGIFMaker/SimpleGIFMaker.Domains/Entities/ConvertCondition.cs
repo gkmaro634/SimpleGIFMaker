@@ -5,6 +5,8 @@
         public static readonly int DefaultGifFrameRate = 10;
         public static readonly double DefaultGifScale = 1d;
 
+        public int Id { get; set; }
+
         public int RoiX { get; set; } = 0;
 
         public int RoiY { get; set; } = 0;
@@ -26,12 +28,6 @@
         public int ScaledWidth => (int)(this.RoiWidth * GifScale);
 
         public int ScaledHeight => (int)(this.RoiHeight * GifScale);
-
-        //public int GifWidth { get; set; }
-
-        //public int GifHeight { get; set; }
-
-        //public double GifFrameRate { get; set; }
 
         public ConvertCondition()
         {

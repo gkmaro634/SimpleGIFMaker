@@ -14,6 +14,7 @@ namespace SimpleGIFMaker.DataSource.Fake
 
         public Task AddConvertConditionAsync(ConvertCondition convertCondition)
         {
+            convertCondition.Id = 0;
             this.conditions.Clear();
             this.conditions.Add(convertCondition);
             return Task.CompletedTask;
@@ -21,19 +22,26 @@ namespace SimpleGIFMaker.DataSource.Fake
 
         public Task DeleteConvertConditionAsync(int id)
         {
-            this.conditions.Clear();
+            var toDelete = this.conditions.FirstOrDefault(f => f.Id == id);
+            if (toDelete is not null)
+            {
+                this.conditions.Remove(toDelete);
+            }
             return Task.CompletedTask;
         }
 
-        public Task<ConvertCondition> GetConvertConditionAsync(int _)
+        public Task<ConvertCondition?> GetConvertConditionAsync(int id)
         {
-            return Task.FromResult(this.conditions[0]);
+            return Task.FromResult<ConvertCondition?>(this.conditions.FirstOrDefault(f => f.Id == id));
         }
 
         public Task UpdateConvertConditionAsync(int id, ConvertCondition convertCondition)
         {
-            // TODO
-            //var toUpdate = this.conditions[0];
+            var toUpdate = this.conditions.FirstOrDefault(f => f.Id == id);
+            if (toUpdate is not null)
+            {
+                toUpdate.UpdateFrom(convertCondition);
+            }
 
             return Task.CompletedTask;
         }
