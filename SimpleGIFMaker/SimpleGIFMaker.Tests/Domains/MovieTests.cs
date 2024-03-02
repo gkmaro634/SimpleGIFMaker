@@ -16,6 +16,22 @@ namespace SimpleGIFMaker.Tests.Domains
         }
 
         [Fact]
+        public void MovieTest()
+        {
+            //
+            var movie = new Movie(this.movieFilePath);
+
+            //
+            Assert.Equal(this.movieFilePath, movie.Path);
+            Assert.Equal(1920, movie.Width);
+            Assert.Equal(1080, movie.Height);
+            //Assert.Equal(this.movieFilePath, movie.FrameCount);
+            Assert.Equal(30.01, movie.FrameRate);
+
+            //
+        }
+
+        [Fact]
         public void CreateGifFileTest()
         {
             //

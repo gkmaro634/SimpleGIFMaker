@@ -9,7 +9,7 @@ namespace SimpleGIFMaker.DataSource.Fake
 
         public FakeMovieRepository()
         {
-            this.movies.Add(new Movie());
+            this.movies.Add(new Movie(""));
         }
 
         public Task<Movie> GetMovieAsync(int _)

@@ -24,4 +24,8 @@
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 	</ItemGroup>
 
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+	  <Exec Command="xcopy /Y &quot;$(SolutionDir)Thirdparty\ffmpeg\bin\*&quot; &quot;$(OutDir)&quot;" />
+	</Target>
+
 </Project>
