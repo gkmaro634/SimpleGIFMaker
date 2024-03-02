@@ -2,7 +2,7 @@
 {
     public class ConvertCondition
     {
-        public static readonly int DefaultGifFrameCount = 10;
+        public static readonly int DefaultGifFrameRate = 10;
         public static readonly double DefaultGifScale = 1d;
 
         public int RoiX { get; set; } = 0;
@@ -13,13 +13,19 @@
 
         public int RoiHeight { get; set; } = 1;
 
-        public int StartFrame { get; set; } = 0;
+        public TimeSpan StartFrame { get; set; } = TimeSpan.FromSeconds(0);
 
-        public int EndFrame { get; set; } = 1;
+        public TimeSpan EndFrame { get; set; } = TimeSpan.FromSeconds(1);
 
-        public int GifFrameCount { get; set; } = ConvertCondition.DefaultGifFrameCount;
+        public TimeSpan TrimLength => EndFrame - StartFrame;
+
+        public int GifFrameRate { get; set; } = ConvertCondition.DefaultGifFrameRate;
 
         public double GifScale { get; set; } = ConvertCondition.DefaultGifScale;
+
+        public int ScaledWidth => (int)(this.RoiWidth * GifScale);
+
+        public int ScaledHeight => (int)(this.RoiHeight * GifScale);
 
         //public int GifWidth { get; set; }
 
@@ -37,8 +43,8 @@
             this.RoiY = 0;
             this.RoiWidth = movie.Width;
             this.RoiHeight = movie.Height;
-            this.StartFrame = 0;
-            this.EndFrame = movie.FrameCount;
+            this.StartFrame = TimeSpan.FromSeconds(0);
+            this.EndFrame = movie.FrameLength;
         }
 
         public void UpdateFrom(ConvertCondition other)
@@ -49,7 +55,7 @@
             this.RoiHeight = other.RoiHeight;
             this.StartFrame = other.StartFrame;
             this.EndFrame = other.EndFrame;
-            this.GifFrameCount = other.GifFrameCount;
+            this.GifFrameRate = other.GifFrameRate;
             this.GifScale = other.GifScale;
         }
     }

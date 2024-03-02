@@ -25,7 +25,7 @@
 	</ItemGroup>
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-	  <Exec Command="xcopy /Y &quot;$(SolutionDir)Thirdparty\ffmpeg\bin\*&quot; &quot;$(OutDir)&quot;" />
+	  <Exec Command="xcopy /Y &quot;$(SolutionDir)Thirdparty\ffmpeg\bin\*&quot; &quot;$(TargetDir)&quot;" />
 	</Target>
 
 </Project>
