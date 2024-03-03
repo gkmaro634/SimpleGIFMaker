@@ -15,6 +15,7 @@ namespace SimpleGIFMaker
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
+                .UseMauiCommunityToolkitMediaElement()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -36,7 +37,6 @@ namespace SimpleGIFMaker
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
-            //builder.UseMauiApp<App>().UseMauiCommunityToolkit();
 
             return builder.Build();
         }

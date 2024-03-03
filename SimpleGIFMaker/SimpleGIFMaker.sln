@@ -5,13 +5,13 @@ VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleGIFMaker", "SimpleGIFMaker\SimpleGIFMaker.csproj", "{EB2EC7BC-B066-4BB3-BBDC-9E3801A472FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleGIFMaker.Domains", "SimpleGIFMaker.Domains\SimpleGIFMaker.Domains.csproj", "{1964F028-76C1-4CEA-865A-45CA8408E9C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleGIFMaker.Domains", "SimpleGIFMaker.Domains\SimpleGIFMaker.Domains.csproj", "{1964F028-76C1-4CEA-865A-45CA8408E9C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleGIFMaker.DataSource.Fake", "SimpleGIFMaker.DataSource.Fake\SimpleGIFMaker.DataSource.Fake.csproj", "{82ABA943-6841-47D8-B003-8924E41FDBA6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleGIFMaker.DataSource.Fake", "SimpleGIFMaker.DataSource.Fake\SimpleGIFMaker.DataSource.Fake.csproj", "{82ABA943-6841-47D8-B003-8924E41FDBA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleGIFMaker.DataSource.FileSystem", "SimpleGIFMaker.DataSource.FileSystem\SimpleGIFMaker.DataSource.FileSystem.csproj", "{7E575162-A34C-41A5-849A-56511C2C3BDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleGIFMaker.DataSource.FileSystem", "SimpleGIFMaker.DataSource.FileSystem\SimpleGIFMaker.DataSource.FileSystem.csproj", "{7E575162-A34C-41A5-849A-56511C2C3BDA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleGIFMaker.Tests", "SimpleGIFMaker.Tests\SimpleGIFMaker.Tests.csproj", "{0C1C4CC9-3F29-4C29-972E-8214B82D72DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleGIFMaker.Tests", "SimpleGIFMaker.Tests\SimpleGIFMaker.Tests.csproj", "{0C1C4CC9-3F29-4C29-972E-8214B82D72DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
