@@ -1,11 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using SimpleGIFMaker.Domains.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SimpleGIFMaker.ViewModels
 {
@@ -16,7 +10,7 @@ namespace SimpleGIFMaker.ViewModels
         [ObservableProperty]
         private string debug;
 
-        public MediaViewModel(IMovieRepository movieRepository) 
+        public MediaViewModel(IMovieRepository movieRepository)
         {
             debug = "Test";
             this.movieRepository = movieRepository;
