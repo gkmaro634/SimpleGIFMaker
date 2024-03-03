@@ -14,6 +14,6 @@ namespace SimpleGIFMaker.Domains.Repositories
 
         Task DeleteConvertConditionAsync(int id);
 
-        Task AddConvertConditionAsync(IConvertCondition gifFile);
+        Task AddConvertConditionAsync(IConvertCondition convertCondition);
     }
 }

@@ -7,5 +7,7 @@ namespace SimpleGIFMaker.Domains
         Action<IMovie> MovieChanged { get; set; }
 
         void SetMovie(IMovie movie);
+
+        IMovie? GetCurrentMovie();
     }
 }

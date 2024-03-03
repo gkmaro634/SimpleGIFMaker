@@ -4,7 +4,7 @@ namespace SimpleGIFMaker.Domains
 {
     public class MediaPlayer : IMediaPlayer
     {
-        public Action<IMovie> MovieChanged { get; set; }
+        public Action<IMovie> MovieChanged { get; set; } = (_) => { };
 
         private IMovie movie;
 
@@ -19,5 +19,9 @@ namespace SimpleGIFMaker.Domains
             this.MovieChanged?.Invoke(this.movie);
         }
 
+        public IMovie? GetCurrentMovie()
+        {
+            return this.movie;
+        }
     }
 }

@@ -38,6 +38,7 @@ namespace SimpleGIFMaker.Tests.Domains
 
             //
             await this.movieRepository.Received().AddMovieAsync(movieMock);
+            await this.convertConditionRepository.Received().AddConvertConditionAsync(Arg.Any<IConvertCondition>());
             this.mediaPlayer.Received().SetMovie(movieMock);
         }
 

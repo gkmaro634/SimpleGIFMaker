@@ -55,8 +55,32 @@ namespace SimpleGIFMaker.ViewModels
                 return;
             }
 
+            var condition = new ConvertCondition(movie);
+            await this.convertConditionRepository.AddConvertConditionAsync(condition);
             await this.movieRepository.AddMovieAsync(movie);
+
             this.mediaPlayer.SetMovie(movie);
+        }
+
+        [RelayCommand]
+        internal async Task ExecConvert()
+        {
+            var movie = await this.movieRepository.GetMovieAsync(0);
+            if (movie is null)
+            {
+                return;
+            }
+
+            var condition = await this.convertConditionRepository.GetConvertConditionAsync(0);
+            if (condition is null)
+            {
+                return;
+            }
+
+            var progress = new Progress<double>();
+            var gif = movie.CreateGifFile(condition, progress);
+
+            await this.gifFileRepository.AddGifFileAsync(gif);
         }
     }
 }
