@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.DependencyInjection;
+using SimpleGIFMaker.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,9 @@ namespace SimpleGIFMaker.Views
         public ConvertControlView()
         {
             InitializeComponent();
+
+            Ioc.Default.GetService<ConvertControlViewModel>();
+
         }
     }
 }
