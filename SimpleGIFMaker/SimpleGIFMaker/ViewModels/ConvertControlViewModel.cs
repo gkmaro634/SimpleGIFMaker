@@ -62,7 +62,7 @@ namespace SimpleGIFMaker.ViewModels
             this.mediaPlayer.SetMovie(movie);
         }
 
-        [RelayCommand]
+        [RelayCommand(CanExecute = nameof(CanConvert))]
         internal async Task ExecConvert()
         {
             var movie = await this.movieRepository.GetMovieAsync(0);
@@ -81,6 +81,12 @@ namespace SimpleGIFMaker.ViewModels
             var gif = movie.CreateGifFile(condition, progress);
 
             await this.gifFileRepository.AddGifFileAsync(gif);
+        }
+
+        private bool CanConvert()
+        {
+            var movie = this.mediaPlayer.GetCurrentMovie();
+            return movie is object;
         }
     }
 }

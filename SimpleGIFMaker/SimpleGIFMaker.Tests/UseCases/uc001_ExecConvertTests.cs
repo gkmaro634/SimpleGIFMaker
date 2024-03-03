@@ -2,6 +2,8 @@ using NSubstitute;
 using SimpleGIFMaker.Domains;
 using SimpleGIFMaker.Domains.Repositories;
 using SimpleGIFMaker.ViewModels;
+using System;
+using Xunit;
 
 namespace SimpleGIFMaker.Tests.Domains
 {
@@ -47,6 +49,31 @@ namespace SimpleGIFMaker.Tests.Domains
             await this.gifFileRepository.Received().AddGifFileAsync(gifFileMock);
         }
 
+        [Fact]
+        public void CanConvert()
+        {
+            //
+            var movieMock = Substitute.For<IMovie>();
+            this.mediaPlayer.GetCurrentMovie().Returns(movieMock);
+
+            //
+
+            //
+            Assert.True(this.vm.ExecConvertCommand.CanExecute(""));
+        }
+
+        [Fact]
+        public void CannotConvert()
+        {
+            //
+            IMovie? movieMock = null;
+            this.mediaPlayer.GetCurrentMovie().Returns(movieMock);
+
+            //
+
+            //
+            Assert.False(this.vm.ExecConvertCommand.CanExecute(""));
+        }
 
         protected virtual void Dispose(bool disposing)
         {
