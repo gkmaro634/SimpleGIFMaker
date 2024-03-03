@@ -1,6 +1,7 @@
 ﻿using System.Configuration;
 using System.Data;
 using System.Windows;
+using CommunityToolkit.Mvvm.DependencyInjection;
 
 namespace SimpleGIFMaker
 {
@@ -10,5 +11,4 @@ namespace SimpleGIFMaker
     public partial class App : Application
     {
     }
-
 }
