@@ -18,4 +18,9 @@ public partial class EditPage : ContentPage
 		this.BindingContext = vm;
 
 	}
+
+    private void ContentPage_Loaded(object sender, EventArgs e)
+    {
+		this.media.Source = movieFilePath;
+    }
 }
