@@ -8,12 +8,12 @@ namespace SimpleGIFMaker.Domains.Repositories
 {
     public interface IConvertConditionRepository
     {
-        Task<ConvertCondition?> GetConvertConditionAsync(int id);
+        Task<IConvertCondition?> GetConvertConditionAsync(int id);
 
-        Task UpdateConvertConditionAsync(int id, ConvertCondition convertCondition);
+        Task UpdateConvertConditionAsync(int id, IConvertCondition convertCondition);
 
         Task DeleteConvertConditionAsync(int id);
 
-        Task AddConvertConditionAsync(ConvertCondition gifFile);
+        Task AddConvertConditionAsync(IConvertCondition gifFile);
     }
 }

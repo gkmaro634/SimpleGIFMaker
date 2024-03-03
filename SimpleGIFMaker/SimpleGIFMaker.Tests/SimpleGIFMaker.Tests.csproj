@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
@@ -12,6 +12,7 @@
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="NSubstitute" Version="5.1.0" />
     <PackageReference Include="xunit" Version="2.5.3" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
   </ItemGroup>
@@ -23,11 +24,12 @@
   <ItemGroup>
     <Folder Include="DataSource\" />
     <Folder Include="UserInterfaces\" />
-    <Folder Include="UseCases\" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SimpleGIFMaker.DataSource.FileSystem\SimpleGIFMaker.DataSource.FileSystem.csproj" />
     <ProjectReference Include="..\SimpleGIFMaker.Domains\SimpleGIFMaker.Domains.csproj" />
+    <ProjectReference Include="..\SimpleGIFMaker\SimpleGIFMaker.csproj" />
   </ItemGroup>
 
   <ItemGroup>

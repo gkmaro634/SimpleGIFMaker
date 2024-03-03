@@ -2,7 +2,7 @@
 
 namespace SimpleGIFMaker.Domains
 {
-    public class GifFile
+    public class GifFile : IGifFile
     {
         public int Id { get; set; }
 

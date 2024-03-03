@@ -1,6 +1,6 @@
 ﻿namespace SimpleGIFMaker.Domains
 {
-    public class ConvertCondition
+    public class ConvertCondition : IConvertCondition
     {
         public static readonly int DefaultGifFrameRate = 10;
         public static readonly double DefaultGifScale = 1d;
@@ -33,7 +33,7 @@
         {
         }
 
-        public ConvertCondition(Movie movie)
+        public ConvertCondition(IMovie movie)
         {
             this.RoiX = 0;
             this.RoiY = 0;
@@ -43,7 +43,7 @@
             this.EndFrame = movie.FrameLength;
         }
 
-        public void UpdateFrom(ConvertCondition other)
+        public void UpdateFrom(IConvertCondition other)
         {
             this.RoiX = other.RoiX;
             this.RoiY = other.RoiY;

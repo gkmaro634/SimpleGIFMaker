@@ -5,14 +5,14 @@ namespace SimpleGIFMaker.DataSource.Fake
 {
     public class FakeConvertConditionRepository : IConvertConditionRepository
     {
-        private readonly List<ConvertCondition> conditions = new List<ConvertCondition>();
+        private readonly List<IConvertCondition> conditions = new List<IConvertCondition>();
 
         public FakeConvertConditionRepository()
         {
             this.conditions.Add(new ConvertCondition());
         }
 
-        public Task AddConvertConditionAsync(ConvertCondition convertCondition)
+        public Task AddConvertConditionAsync(IConvertCondition convertCondition)
         {
             convertCondition.Id = 0;
             this.conditions.Clear();
@@ -30,12 +30,12 @@ namespace SimpleGIFMaker.DataSource.Fake
             return Task.CompletedTask;
         }
 
-        public Task<ConvertCondition?> GetConvertConditionAsync(int id)
+        public Task<IConvertCondition?> GetConvertConditionAsync(int id)
         {
-            return Task.FromResult<ConvertCondition?>(this.conditions.FirstOrDefault(f => f.Id == id));
+            return Task.FromResult<IConvertCondition?>(this.conditions.FirstOrDefault(f => f.Id == id));
         }
 
-        public Task UpdateConvertConditionAsync(int id, ConvertCondition convertCondition)
+        public Task UpdateConvertConditionAsync(int id, IConvertCondition convertCondition)
         {
             var toUpdate = this.conditions.FirstOrDefault(f => f.Id == id);
             if (toUpdate is not null)

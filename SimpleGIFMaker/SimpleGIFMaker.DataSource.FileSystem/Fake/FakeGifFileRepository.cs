@@ -5,13 +5,13 @@ namespace SimpleGIFMaker.DataSource.Fake
 {
     public class FakeGifFileRepository : IGifFileRepository
     {
-        private readonly List<GifFile> gifFiles = new List<GifFile>();
+        private readonly List<IGifFile> gifFiles = new List<IGifFile>();
 
         public FakeGifFileRepository()
         {
         }
 
-        public Task AddGifFileAsync(GifFile gifFile)
+        public Task AddGifFileAsync(IGifFile gifFile)
         {
             gifFile.Id = 0;
             this.gifFiles.Clear();
@@ -30,18 +30,18 @@ namespace SimpleGIFMaker.DataSource.Fake
             return Task.CompletedTask;
         }
 
-        public Task<GifFile?> GetGifFileAsync(int id)
+        public Task<IGifFile?> GetGifFileAsync(int id)
         {
             var toReturn = this.gifFiles.FirstOrDefault(f => f.Id == id);
             if (toReturn is not null)
             {
-                return Task.FromResult<GifFile?>(toReturn);
+                return Task.FromResult<IGifFile?>(toReturn);
             }
 
-            return Task.FromResult<GifFile?>(null);
+            return Task.FromResult<IGifFile?>(null);
         }
 
-        public Task UpdateGifFileAsync(int id, GifFile gifFile)
+        public Task UpdateGifFileAsync(int id, IGifFile gifFile)
         {
             this.DeleteGifFileAsync(id);
             this.AddGifFileAsync(gifFile);

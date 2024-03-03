@@ -2,7 +2,7 @@
 
 namespace SimpleGIFMaker.Domains
 {
-    public class Movie
+    public class Movie : IMovie
     {
         public int Id { get; set; }
 
@@ -24,7 +24,7 @@ namespace SimpleGIFMaker.Domains
             this.CacheMovieInfo(path);
         }
 
-        public GifFile CreateGifFile(ConvertCondition condition, IProgress<double> progress)
+        public IGifFile CreateGifFile(IConvertCondition condition, IProgress<double> progress)
         {
             progress.Report(0);
 
@@ -38,7 +38,7 @@ namespace SimpleGIFMaker.Domains
             return gif;
         }
 
-        private static string ConvertToGif(string filePath, ConvertCondition condition)
+        private static string ConvertToGif(string filePath, IConvertCondition condition)
         {
             var ffmpegPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ffmpeg.exe");
             var orgFileName = System.IO.Path.GetFileName(filePath);

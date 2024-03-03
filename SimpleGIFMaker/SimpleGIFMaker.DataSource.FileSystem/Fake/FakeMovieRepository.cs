@@ -5,13 +5,13 @@ namespace SimpleGIFMaker.DataSource.Fake
 {
     public class FakeMovieRepository : IMovieRepository
     {
-        private readonly List<Movie> movies = new List<Movie>();
+        private readonly List<IMovie> movies = new List<IMovie>();
 
         public FakeMovieRepository()
         {
         }
 
-        public Task AddMovieAsync(Movie movie)
+        public Task AddMovieAsync(IMovie movie)
         {
             movie.Id = 0;
             this.movies.Clear();
@@ -19,9 +19,9 @@ namespace SimpleGIFMaker.DataSource.Fake
             return Task.CompletedTask;
         }
 
-        public Task<Movie?> GetMovieAsync(int id)
+        public Task<IMovie?> GetMovieAsync(int id)
         {
-            return Task.FromResult<Movie?>(this.movies.FirstOrDefault(m => m.Id == id));
+            return Task.FromResult<IMovie?>(this.movies.FirstOrDefault(m => m.Id == id));
         }
     }
 }

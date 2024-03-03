@@ -8,12 +8,12 @@ namespace SimpleGIFMaker.Domains.Repositories
 {
     public interface IGifFileRepository
     {
-        Task<GifFile?> GetGifFileAsync(int id);
+        Task<IGifFile?> GetGifFileAsync(int id);
 
-        Task UpdateGifFileAsync(int id, GifFile gifFile);
+        Task UpdateGifFileAsync(int id, IGifFile gifFile);
 
         Task DeleteGifFileAsync(int id);
 
-        Task AddGifFileAsync(GifFile gifFile);
+        Task AddGifFileAsync(IGifFile gifFile);
     }
 }
