@@ -49,6 +49,8 @@ namespace SimpleGIFMaker.Tests.UseCases
             this.mediaPlayer.Received().SetMovie(movieMock);
 
             Assert.True(this.subVm.MediaState.HasFlag(MediaStateType.SourceLoaded));
+
+            Assert.True(this.vm.ExecConvertCommand.CanExecute(""));
         }
 
         [Fact]
@@ -63,6 +65,8 @@ namespace SimpleGIFMaker.Tests.UseCases
             //
             await this.movieRepository.DidNotReceive().AddMovieAsync(Arg.Any<IMovie>());
             this.mediaPlayer.DidNotReceive().SetMovie(Arg.Any<IMovie>());
+
+            Assert.False(this.vm.ExecConvertCommand.CanExecute(""));
         }
 
         protected virtual void Dispose(bool disposing)
