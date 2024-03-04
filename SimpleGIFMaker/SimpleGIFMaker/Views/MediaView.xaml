@@ -15,14 +15,15 @@
 
         <Viewbox Grid.Row="0" Stretch="Uniform" Width="600" Height="400">
             <Grid>
-                <Border x:Name="DummyMediaImage" BorderThickness="8" BorderBrush="Gray" Background="Gray"
-                        Width="1500" Height="{Binding MediaHeight}" Margin="0"/>
+                <!--<Border x:Name="DummyMediaImage" BorderThickness="8" BorderBrush="Gray" Background="Gray"
+                        Width="1500" Height="{Binding MediaHeight}" Margin="0"/>-->
 
-                <MediaElement 
+                <MediaElement Visibility="Hidden"
                     x:Name="media"
                     Source="{Binding MovieFilePath, Mode=OneWay}"
                     LoadedBehavior="Pause"
                     Volume="0"
+                    Panel.ZIndex="1"
                     >
                     <MediaElement.LayoutTransform>
                         <RotateTransform 
@@ -33,14 +34,15 @@
                     </MediaElement.LayoutTransform>
                 </MediaElement>
 
-                <!--<ctrls:DraggableRectangle 
+                <ctrls:DraggableRectangle
                     Width="{Binding MediaWidth, Mode=OneWay}" 
                     Height="{Binding MediaHeight, Mode=OneWay}"
                     StartX="{Binding CropRectStartX, Mode=TwoWay}"
                     StartY="{Binding CropRectStartY, Mode=TwoWay}"
                     EndX="{Binding CropRectEndX, Mode=TwoWay}"
                     EndY="{Binding CropRectEndY, Mode=TwoWay}"
-                    />-->
+                    Panel.ZIndex="2"
+                    />
             </Grid>
         </Viewbox>
 
