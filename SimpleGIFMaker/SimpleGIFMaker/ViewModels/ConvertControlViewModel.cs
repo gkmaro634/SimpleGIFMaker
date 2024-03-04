@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using SimpleGIFMaker.Domains;
 using SimpleGIFMaker.Domains.Repositories;
+using static SimpleGIFMaker.Models.Definitions;
 
 
 namespace SimpleGIFMaker.ViewModels
@@ -13,6 +14,9 @@ namespace SimpleGIFMaker.ViewModels
         private readonly IMovieRepository movieRepository;
         private readonly IConvertConditionRepository convertConditionRepository;
         private readonly IGifFileRepository gifFileRepository;
+
+        //[ObservableProperty]
+        //private MediaStateType mediaState = MediaStateType.Empty;
 
         internal Func<IMovie?> selectMovieFileFunc;
 
@@ -60,6 +64,8 @@ namespace SimpleGIFMaker.ViewModels
             await this.movieRepository.AddMovieAsync(movie);
 
             this.mediaPlayer.SetMovie(movie);
+
+            //this.MediaState = MediaStateType.SourceLoaded;
         }
 
         [RelayCommand(CanExecute = nameof(CanConvert))]

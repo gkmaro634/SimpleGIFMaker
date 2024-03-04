@@ -7,25 +7,5 @@
         mc:Ignorable="d"
         xmlns:views="clr-namespace:SimpleGIFMaker.Views"
         Title="MainWindow" Height="600" Width="800">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <views:MediaView Grid.Row="0"/>
-        <TabControl Grid.Row="1">
-            <TabItem Header="GIF Convert">
-                <views:ConvertControlView/>
-            </TabItem>
-            <TabItem Header="Crop">
-                <views:CropSettingView/>
-            </TabItem>
-            <TabItem Header="Cut">
-                <views:CutSettingView/>
-            </TabItem>
-        </TabControl>
-
-
-    </Grid>
+    <views:MediaView Grid.Row="0"/>
 </Window>

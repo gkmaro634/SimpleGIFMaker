@@ -1,24 +1,18 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using SimpleGIFMaker.Domains;
 using SimpleGIFMaker.Domains.Repositories;
+using static SimpleGIFMaker.Models.Definitions;
 
 namespace SimpleGIFMaker.ViewModels
 {
     internal partial class MediaViewModel : ObservableObject
     {
-        [Flags]
-        public enum StateType
-        {
-            Idle = 0b00000000,
-            SourceLoaded = 0b00000001,
-            ConditionEdit = 0b00000010,
-            CropSettingEdit = SourceLoaded | ConditionEdit | 0b00000100,
-            CutSettingEdit = SourceLoaded | ConditionEdit | 0b00001000,
-            PlayingMedia = SourceLoaded | 0b00010000,
-        }
+        [ObservableProperty]
+        private EditModeType editMode = EditModeType.ConvertSetting;
 
         [ObservableProperty]
-        private StateType state = StateType.Idle;
+        private MediaStateType mediaState = MediaStateType.Empty;
 
         [ObservableProperty]
         private IConvertCondition? convertCondition;
@@ -32,9 +26,24 @@ namespace SimpleGIFMaker.ViewModels
             this.mediaPlayer = mediaPlayer;
             this.movieRepository = movieRepository;
             this.convertConditionRepository = convertConditionRepository;
+
+            this.mediaPlayer.MovieChanged += this.OnMovieChanged;
         }
 
-        internal async void EntryCrop()
+        private void OnMovieChanged(IMovie movie)
+        {
+            if (movie is null)
+            {
+                return;
+            }
+
+            // TODO: cache movie instance to bind
+
+            this.MediaState = MediaStateType.SourceLoaded;
+        }
+
+        [RelayCommand]
+        internal async Task EntryCrop()
         {
             var condition = await this.convertConditionRepository.GetConvertConditionAsync(0);
             if (condition is null)
@@ -44,7 +53,21 @@ namespace SimpleGIFMaker.ViewModels
 
             this.ConvertCondition = condition;
 
-            this.State = StateType.CropSettingEdit;
+            this.EditMode = EditModeType.CropSetting;
+        }
+
+        [RelayCommand]
+        internal async Task EntryConvertControl()
+        {
+            var condition = await this.convertConditionRepository.GetConvertConditionAsync(0);
+            if (condition is null)
+            {
+                return;
+            }
+
+            this.ConvertCondition = condition;
+
+            this.EditMode = EditModeType.ConvertSetting;
         }
     }
 }

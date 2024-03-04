@@ -1,12 +1,11 @@
 using NSubstitute;
 using SimpleGIFMaker.Domains;
 using SimpleGIFMaker.Domains.Repositories;
-using SimpleGIFMaker.Models;
 using SimpleGIFMaker.ViewModels;
 
 namespace SimpleGIFMaker.Tests.Domains
 {
-    public class uc101_EntryCropSettingTests : IDisposable
+    public class uc102_ExitCropSettingTests : IDisposable
     {
         private bool disposedValue;
 
@@ -17,7 +16,7 @@ namespace SimpleGIFMaker.Tests.Domains
         private IConvertConditionRepository convertConditionRepository;
         private IMovieRepository movieRepository;
 
-        public uc101_EntryCropSettingTests()
+        public uc102_ExitCropSettingTests()
         {
             this.mediaPlayer = Substitute.For<IMediaPlayer>();
             this.convertConditionRepository = Substitute.For<IConvertConditionRepository>();
@@ -28,20 +27,21 @@ namespace SimpleGIFMaker.Tests.Domains
         }
 
         [Fact]
-        public async void EntryCropSetting()
+        public async void ExitCropSetting()
         {
             //
             var conditionMock = Substitute.For<IConvertCondition>();
             this.convertConditionRepository.GetConvertConditionAsync(0).Returns(conditionMock);
 
-            //
             await this.vm.EntryCrop();
             this.subVm.LoadedCommand.Execute("");
 
             //
-            Assert.Equal(Definitions.EditModeType.CropSetting, this.vm.EditMode);
-            Assert.Same(conditionMock, this.vm.ConvertCondition);
-            Assert.Same(conditionMock, this.subVm.Condition);
+            await this.vm.EntryConvertControl();
+            this.subVm.UnloadedCommand.Execute("");
+
+            //
+            await this.convertConditionRepository.Received().UpdateConvertConditionAsync(0, this.subVm.Condition!);
         }
 
         protected virtual void Dispose(bool disposing)

@@ -24,5 +24,14 @@ namespace SimpleGIFMaker.ViewModels
             this.Condition = condition;
         }
 
+        [RelayCommand]
+        internal async Task Unloaded()
+        {
+            if (this.Condition is not null)
+            {
+                await this.convertConditionRepository.UpdateConvertConditionAsync(0, this.Condition);
+            }
+        }
+
     }
 }
