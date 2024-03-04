@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using SimpleGIFMaker.Domains;
 using SimpleGIFMaker.Domains.Repositories;
+using System.Windows;
 using static SimpleGIFMaker.Models.Definitions;
 
 namespace SimpleGIFMaker.ViewModels
@@ -15,10 +16,7 @@ namespace SimpleGIFMaker.ViewModels
         private MediaStateType mediaState = MediaStateType.Empty;
 
         [ObservableProperty]
-        internal int mediaWidth;
-
-        [ObservableProperty]
-        internal int mediaHeight;
+        internal IMovie currentMovie;
 
         [ObservableProperty]
         internal int cropRectStartX;
@@ -41,17 +39,11 @@ namespace SimpleGIFMaker.ViewModels
         [ObservableProperty]
         internal int centerY;
 
-        //[ObservableProperty]
-        //internal int cropRectWidth;
-
-        //[ObservableProperty]
-        //internal int cropRectHeight;
+        [ObservableProperty]
+        internal double scale = 1d;
 
         [ObservableProperty]
-        internal string movieFilePath = string.Empty;
-
-        //[ObservableProperty]
-        //private IConvertCondition? convertCondition;
+        internal double scaleInv = 1d;
 
         private readonly IMediaPlayer mediaPlayer;
         private readonly IMovieRepository movieRepository;
@@ -73,15 +65,11 @@ namespace SimpleGIFMaker.ViewModels
                 return;
             }
 
-            this.MovieFilePath = movie.Path;
-            //this.MediaWidth = (movie.Rotation % 180) == 0 ? movie.Width : movie.Height;
-            //this.MediaHeight = (movie.Rotation % 180) == 0 ? movie.Height : movie.Width;
-            this.MediaWidth = movie.Width;
-            this.MediaHeight = movie.Height;
+            this.CurrentMovie = movie;
             this.CropRectStartX = 0;
             this.CropRectStartY = 0;
-            this.CropRectEndX = this.MediaWidth;
-            this.CropRectEndY = this.MediaHeight;
+            this.CropRectEndX = movie.Width;
+            this.CropRectEndY = movie.Height;
             this.Rotation = movie.Rotation * -1;
             this.CenterX = movie.Width / 2;
             this.CenterY = movie.Height / 2;
@@ -160,6 +148,18 @@ namespace SimpleGIFMaker.ViewModels
             {
                 this.mediaPlayer.UpdateCropRect(modifiedCropRect);
             }
+        }
+
+        [RelayCommand]
+        internal void UpdateScale(SizeChangedEventArgs e)
+        {
+            if (this.CurrentMovie is not null)
+            {
+                var scaledWidth = e.NewSize.Width;
+                this.Scale = scaledWidth / this.CurrentMovie.Width;
+                this.ScaleInv = 1d / this.Scale;
+            }
+
         }
     }
 }
