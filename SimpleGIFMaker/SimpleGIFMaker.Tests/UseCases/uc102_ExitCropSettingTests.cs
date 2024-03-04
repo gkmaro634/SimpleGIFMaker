@@ -2,6 +2,7 @@ using NSubstitute;
 using SimpleGIFMaker.Domains;
 using SimpleGIFMaker.Domains.Repositories;
 using SimpleGIFMaker.ViewModels;
+using static SimpleGIFMaker.Models.Definitions;
 
 namespace SimpleGIFMaker.Tests.Domains
 {
@@ -42,6 +43,7 @@ namespace SimpleGIFMaker.Tests.Domains
 
             //
             await this.convertConditionRepository.Received().UpdateConvertConditionAsync(0, this.subVm.Condition!);
+            Assert.Equal(EditModeType.ConvertSetting, this.vm.EditMode);
         }
 
         protected virtual void Dispose(bool disposing)

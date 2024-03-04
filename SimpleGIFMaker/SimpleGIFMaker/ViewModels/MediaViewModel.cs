@@ -43,6 +43,20 @@ namespace SimpleGIFMaker.ViewModels
         }
 
         [RelayCommand]
+        internal async Task EntryConvertControl()
+        {
+            var condition = await this.convertConditionRepository.GetConvertConditionAsync(0);
+            if (condition is null)
+            {
+                return;
+            }
+
+            this.ConvertCondition = condition;
+
+            this.EditMode = EditModeType.ConvertSetting;
+        }
+
+        [RelayCommand]
         internal async Task EntryCrop()
         {
             var condition = await this.convertConditionRepository.GetConvertConditionAsync(0);
@@ -57,7 +71,7 @@ namespace SimpleGIFMaker.ViewModels
         }
 
         [RelayCommand]
-        internal async Task EntryConvertControl()
+        internal async Task EntryCut()
         {
             var condition = await this.convertConditionRepository.GetConvertConditionAsync(0);
             if (condition is null)
@@ -67,7 +81,7 @@ namespace SimpleGIFMaker.ViewModels
 
             this.ConvertCondition = condition;
 
-            this.EditMode = EditModeType.ConvertSetting;
+            this.EditMode = EditModeType.CutSetting;
         }
     }
 }
