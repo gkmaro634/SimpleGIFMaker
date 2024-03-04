@@ -7,6 +7,70 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock Text="ConvertControlView"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <UniformGrid Grid.Row="0" Columns="2">
+            <TextBlock Text="Movie File:"/>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBox IsReadOnly="True" Width="200" Text="{Binding Movie.Path, Mode=OneWay}"/>
+                <Button Width="32" Content="..." Command="{Binding SelectFileCommand, Mode=OneWay}"/>
+            </StackPanel>
+        </UniformGrid>
+
+        <UniformGrid Grid.Row="1"
+                     Columns="2">
+            <TextBlock Text="Scale: "/>
+            <ComboBox x:Name="scaleSelect" ItemsSource="{Binding ScaleSelectItems, Mode=OneWay}"
+                      SelectionChanged="ComboBox_SelectionChanged"
+                      DisplayMemberPath="Label"
+                      SelectedValuePath="."
+                      SelectedValue="{Binding ElementName=scaleSelect, Path=ItemsSource[0]}">
+                <ComboBox.Style>
+                    <Style TargetType="ComboBox">
+                        <Setter Property="IsEnabled" Value="True"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding MediaState, Mode=OneWay}" Value="Empty">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ComboBox.Style>
+            </ComboBox>
+
+            <TextBlock Text="FrameRate:"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="40"/>
+                </Grid.ColumnDefinitions>
+                <Slider x:Name="frameRateSlider" Grid.Column="0" Minimum="1" Maximum="30" Value="30">
+                    <Slider.Style>
+                        <Style TargetType="Slider">
+                            <Setter Property="IsEnabled" Value="True"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding MediaState, Mode=OneWay}" Value="Empty">
+                                    <Setter Property="IsEnabled" Value="False"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Slider.Style>
+                </Slider>
+
+                <TextBlock Grid.Column="1" Text="{Binding ElementName=frameRateSlider, Path=Value, Mode=OneWay}"
+                           Width="40"/>
+            </Grid>
+        </UniformGrid>
+
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="2"
+                    >
+            <Button Content="Convert" Command="{Binding ExecConvertCommand, Mode=OneWay}"/>
+        </StackPanel>
+
     </Grid>
 </UserControl>

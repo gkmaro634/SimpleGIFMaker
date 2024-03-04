@@ -3,8 +3,8 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using SimpleGIFMaker.Domains;
 using SimpleGIFMaker.Domains.Repositories;
+using SimpleGIFMaker.Models;
 using static SimpleGIFMaker.Models.Definitions;
-
 
 namespace SimpleGIFMaker.ViewModels
 {
@@ -15,15 +15,25 @@ namespace SimpleGIFMaker.ViewModels
         private readonly IConvertConditionRepository convertConditionRepository;
         private readonly IGifFileRepository gifFileRepository;
 
-        //[ObservableProperty]
-        //private MediaStateType mediaState = MediaStateType.Empty;
+        [ObservableProperty]
+        private List<ScaleSelectItem> scaleSelectItems = new();
+
+        [ObservableProperty]
+        private IConvertCondition? condition;
+
+        [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(ExecConvertCommand))]
+        private IMovie? movie;
+
+        [ObservableProperty]
+        private MediaStateType mediaState = MediaStateType.Empty;
 
         internal Func<IMovie?> selectMovieFileFunc;
 
         public ConvertControlViewModel(
             IMediaPlayer mediaPlayer,
             IMovieRepository movieRepository,
-            IConvertConditionRepository convertConditionRepository, 
+            IConvertConditionRepository convertConditionRepository,
             IGifFileRepository gifFileRepository)
         {
             this.mediaPlayer = mediaPlayer;
@@ -32,6 +42,30 @@ namespace SimpleGIFMaker.ViewModels
             this.gifFileRepository = gifFileRepository;
 
             this.selectMovieFileFunc = this.SelectMovieFile;
+
+            var items = Enumerable.Range(1, 10).Select(v =>
+            {
+                var label = v == 1 ? "1" : $"1/{v}";
+                var item = new ScaleSelectItem(label, 1d / (double)v);
+                return item;
+            });
+            this.ScaleSelectItems.AddRange(items);
+        }
+
+        [RelayCommand]
+        internal async Task Loaded()
+        {
+            var condition = await this.convertConditionRepository.GetConvertConditionAsync(0);
+            this.Condition = condition;
+        }
+
+        [RelayCommand]
+        internal async Task Unloaded()
+        {
+            if (this.Condition is not null)
+            {
+                await this.convertConditionRepository.UpdateConvertConditionAsync(0, this.Condition);
+            }
         }
 
         internal IMovie? SelectMovieFile()
@@ -60,12 +94,15 @@ namespace SimpleGIFMaker.ViewModels
             }
 
             var condition = new ConvertCondition(movie);
+            this.Condition = condition;
+            this.Movie = movie;
+
             await this.convertConditionRepository.AddConvertConditionAsync(condition);
             await this.movieRepository.AddMovieAsync(movie);
 
             this.mediaPlayer.SetMovie(movie);
 
-            //this.MediaState = MediaStateType.SourceLoaded;
+            this.MediaState = MediaStateType.SourceLoaded;
         }
 
         [RelayCommand(CanExecute = nameof(CanConvert))]
@@ -91,8 +128,28 @@ namespace SimpleGIFMaker.ViewModels
 
         private bool CanConvert()
         {
-            var movie = this.mediaPlayer.GetCurrentMovie();
-            return movie is object;
+            return this.Movie is object;
         }
+
+        [RelayCommand]
+        internal async Task UpdateGifScale(double scale)
+        {
+            if (this.Condition is not null)
+            {
+                this.Condition.GifScale = scale;
+                await this.convertConditionRepository.UpdateConvertConditionAsync(0, this.Condition);
+            }
+        }
+
+        [RelayCommand]
+        internal async Task UpdateGifFrameRate(int frameRate)
+        {
+            if (this.Condition is not null)
+            {
+                this.Condition.GifFrameRate = frameRate;
+                await this.convertConditionRepository.UpdateConvertConditionAsync(0, this.Condition);
+            }
+        }
+
     }
 }
