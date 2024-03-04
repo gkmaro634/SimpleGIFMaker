@@ -1,0 +1,31 @@
+﻿<UserControl
+    x:Class="SimpleGIFMaker.Views.Controls.DraggableSymbol"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:SimpleGIFMaker.Views.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="thisControl"
+    d:DesignHeight="32"
+    d:DesignWidth="32"
+    mc:Ignorable="d"
+    >
+    <UserControl.RenderTransform>
+        <TransformGroup>
+            <RotateTransform Angle="{Binding ElementName=thisControl, Path=Rotation}" CenterX="0" CenterY="0" />
+            <ScaleTransform CenterX="0" CenterY="0" ScaleX="{Binding ElementName=thisControl, Path=Scale}" ScaleY="{Binding ElementName=thisControl, Path=Scale}" />
+        </TransformGroup>
+    </UserControl.RenderTransform>
+    <Grid
+        Margin="-16,-16,0,0"
+        ClipToBounds="False"
+        >
+        <Ellipse
+            Width="32"
+            Height="32"
+            Fill="White"
+            Stroke="Black"
+            StrokeThickness="2"
+            />
+    </Grid>
+</UserControl>

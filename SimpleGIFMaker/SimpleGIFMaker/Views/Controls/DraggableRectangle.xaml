@@ -6,8 +6,8 @@
     xmlns:local="clr-namespace:SimpleGIFMaker.Views.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Name="thisControl"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    d:DesignHeight="100"
+    d:DesignWidth="100"
     mc:Ignorable="d"
     >
     <Canvas ClipToBounds="True">
@@ -16,7 +16,7 @@
             Canvas.Left="0"
             Canvas.Top="0"
             Width="{Binding ElementName=thisControl, Path=ActualWidth, Mode=OneWay}"
-            Height="{Binding StartY, RelativeSource={RelativeSource AncestorType={x:Type local:DraggableRectangle}}}"
+            Height="{Binding ElementName=thisControl, Path=StartY, Mode=OneWay}"
             ClipToBounds="True"
             Fill="Black"
             Opacity="0.5"
@@ -24,7 +24,7 @@
         <Rectangle
             x:Name="maskBottom"
             Canvas.Left="0"
-            Canvas.Top="{Binding EndY, RelativeSource={RelativeSource AncestorType={x:Type local:DraggableRectangle}}}"
+            Canvas.Top="{Binding ElementName=thisControl, Path=EndY, Mode=OneWay}"
             Width="{Binding ElementName=thisControl, Path=ActualWidth, Mode=OneWay}"
             Height="{Binding ElementName=thisControl, Path=ActualHeight, Mode=OneWay}"
             ClipToBounds="True"
@@ -34,54 +34,50 @@
         <Rectangle
             x:Name="maskLeft"
             Canvas.Left="0"
-            Canvas.Top="{Binding StartY, RelativeSource={RelativeSource AncestorType={x:Type local:DraggableRectangle}}}"
-            Width="{Binding StartX, RelativeSource={RelativeSource AncestorType={x:Type local:DraggableRectangle}}}"
-            Height="{Binding RectHeight, RelativeSource={RelativeSource AncestorType={x:Type local:DraggableRectangle}}}"
+            Canvas.Top="{Binding ElementName=thisControl, Path=StartY, Mode=OneWay}"
+            Width="{Binding ElementName=thisControl, Path=StartX, Mode=OneWay}"
+            Height="{Binding ElementName=thisControl, Path=RectHeight, Mode=OneWay}"
             ClipToBounds="True"
             Fill="Black"
             Opacity="0.5"
             />
         <Rectangle
             x:Name="maskRight"
-            Canvas.Left="{Binding EndX, RelativeSource={RelativeSource AncestorType={x:Type local:DraggableRectangle}}}"
-            Canvas.Top="{Binding StartY, RelativeSource={RelativeSource AncestorType={x:Type local:DraggableRectangle}}}"
+            Canvas.Left="{Binding ElementName=thisControl, Path=EndX, Mode=OneWay}"
+            Canvas.Top="{Binding ElementName=thisControl, Path=StartY, Mode=OneWay}"
             Width="{Binding ElementName=thisControl, Path=ActualWidth, Mode=OneWay}"
-            Height="{Binding RectHeight, RelativeSource={RelativeSource AncestorType={x:Type local:DraggableRectangle}}}"
+            Height="{Binding ElementName=thisControl, Path=RectHeight, Mode=OneWay}"
             ClipToBounds="True"
             Fill="Black"
             Opacity="0.5"
             />
-        <Ellipse
+        <local:DraggableSymbol
             x:Name="c1"
-            Canvas.Left="{Binding StartX, RelativeSource={RelativeSource AncestorType={x:Type local:DraggableRectangle}}}"
-            Canvas.Top="{Binding StartY, RelativeSource={RelativeSource AncestorType={x:Type local:DraggableRectangle}}}"
-            Width="8"
-            Height="8"
-            Fill="Red"
+            Canvas.Left="{Binding ElementName=thisControl, Path=StartX, Mode=OneWay}"
+            Canvas.Top="{Binding ElementName=thisControl, Path=StartY, Mode=OneWay}"
+            Rotation="0"
+            Scale="{Binding ElementName=thisControl, Path=SymbolScale, Mode=OneWay}"
             />
-        <Ellipse
+        <local:DraggableSymbol
             x:Name="c2"
-            Canvas.Left="{Binding StartX, RelativeSource={RelativeSource AncestorType={x:Type local:DraggableRectangle}}}"
-            Canvas.Top="{Binding EndY, RelativeSource={RelativeSource AncestorType={x:Type local:DraggableRectangle}}}"
-            Width="8"
-            Height="8"
-            Fill="Red"
+            Canvas.Left="{Binding ElementName=thisControl, Path=StartX, Mode=OneWay}"
+            Canvas.Top="{Binding ElementName=thisControl, Path=EndY, Mode=OneWay}"
+            Rotation="270"
+            Scale="{Binding ElementName=thisControl, Path=SymbolScale, Mode=OneWay}"
             />
-        <Ellipse
+        <local:DraggableSymbol
             x:Name="c3"
-            Canvas.Left="{Binding EndX, RelativeSource={RelativeSource AncestorType={x:Type local:DraggableRectangle}}}"
-            Canvas.Top="{Binding EndY, RelativeSource={RelativeSource AncestorType={x:Type local:DraggableRectangle}}}"
-            Width="8"
-            Height="8"
-            Fill="Red"
+            Canvas.Left="{Binding ElementName=thisControl, Path=EndX, Mode=OneWay}"
+            Canvas.Top="{Binding ElementName=thisControl, Path=EndY, Mode=OneWay}"
+            Rotation="180"
+            Scale="{Binding ElementName=thisControl, Path=SymbolScale, Mode=OneWay}"
             />
-        <Ellipse
+        <local:DraggableSymbol
             x:Name="c4"
-            Canvas.Left="{Binding EndX, RelativeSource={RelativeSource AncestorType={x:Type local:DraggableRectangle}}}"
-            Canvas.Top="{Binding StartY, RelativeSource={RelativeSource AncestorType={x:Type local:DraggableRectangle}}}"
-            Width="8"
-            Height="8"
-            Fill="Red"
+            Canvas.Left="{Binding ElementName=thisControl, Path=EndX, Mode=OneWay}"
+            Canvas.Top="{Binding ElementName=thisControl, Path=StartY, Mode=OneWay}"
+            Rotation="90"
+            Scale="{Binding ElementName=thisControl, Path=SymbolScale, Mode=OneWay}"
             />
     </Canvas>
 </UserControl>

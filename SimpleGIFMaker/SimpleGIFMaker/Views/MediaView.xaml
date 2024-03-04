@@ -55,10 +55,10 @@
                         Width="{Binding CurrentMovie.Width, Mode=OneWay}"
                         Height="{Binding CurrentMovie.Height, Mode=OneWay}"
                         Panel.ZIndex="2"
-                        EndX="1000"
-                        EndY="800"
-                        StartX="100"
-                        StartY="200"
+                        EndX="{Binding CropRectEndX, Mode=TwoWay}"
+                        EndY="{Binding CropRectEndY, Mode=TwoWay}"
+                        StartX="{Binding CropRectStartX, Mode=TwoWay}"
+                        StartY="{Binding CropRectStartY, Mode=TwoWay}"
                         />
                 </Grid>
             </Viewbox>

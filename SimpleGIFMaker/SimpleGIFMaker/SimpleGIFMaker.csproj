@@ -22,6 +22,12 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Views\Controls\DraggableSymbol.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="xcopy /Y &quot;$(SolutionDir)Thirdparty\ffmpeg\bin\*&quot; &quot;$(TargetDir)&quot;" />
   </Target>
