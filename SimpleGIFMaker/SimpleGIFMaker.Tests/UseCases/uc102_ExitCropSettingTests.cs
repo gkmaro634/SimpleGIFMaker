@@ -24,7 +24,7 @@ namespace SimpleGIFMaker.Tests.UseCases
             this.movieRepository = Substitute.For<IMovieRepository>();
 
             this.vm = new MediaViewModel(this.mediaPlayer, this.movieRepository, this.convertConditionRepository);
-            this.subVm = new CropSettingViewModel(this.convertConditionRepository);
+            this.subVm = new CropSettingViewModel(this.mediaPlayer, this.convertConditionRepository);
         }
 
         [Fact]

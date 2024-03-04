@@ -6,42 +6,47 @@ using SimpleGIFMaker.ViewModels;
 
 namespace SimpleGIFMaker.Tests.UseCases
 {
-    public class uc201_EntryCutSettingTests : IDisposable
+    public class uc103_EditCropSettingTests : IDisposable
     {
         private bool disposedValue;
 
         private MediaViewModel vm;
-        private CutSettingViewModel subVm;
+        private CropSettingViewModel subVm;
 
         private IMediaPlayer mediaPlayer;
         private IConvertConditionRepository convertConditionRepository;
         private IMovieRepository movieRepository;
 
-        public uc201_EntryCutSettingTests()
+        public uc103_EditCropSettingTests()
         {
             this.mediaPlayer = Substitute.For<IMediaPlayer>();
             this.convertConditionRepository = Substitute.For<IConvertConditionRepository>();
             this.movieRepository = Substitute.For<IMovieRepository>();
 
             this.vm = new MediaViewModel(this.mediaPlayer, this.movieRepository, this.convertConditionRepository);
-            this.subVm = new CutSettingViewModel(this.convertConditionRepository);
+            this.subVm = new CropSettingViewModel(this.mediaPlayer, this.convertConditionRepository);
         }
 
         [Fact]
-        public async void EntryCutSetting()
+        public void EditCropSetting()
         {
             //
-            var conditionMock = Substitute.For<IConvertCondition>();
-            this.convertConditionRepository.GetConvertConditionAsync(0).Returns(conditionMock);
+            var cropRect = new CropRect(0, 0, 800, 600);
+            this.mediaPlayer.GetCurrentCropRect().Returns(cropRect);
+            this.mediaPlayer
+                .When(x => x.UpdateCropRect(Arg.Any<CropRect>()))
+                .Do(x => this.mediaPlayer.CropRectChanged?.Invoke(x.Arg<CropRect>()));
 
             //
-            await this.vm.EntryCut();
-            this.subVm.LoadedCommand.Execute("");
+            var modifiedCropRect = new CropRect(10, 20, 400, 300);
+            this.vm.UpdateCropRect(modifiedCropRect);
 
             //
-            Assert.Equal(Definitions.EditModeType.CutSetting, this.vm.EditMode);
-            //Assert.Same(conditionMock, this.vm.ConvertCondition);
-            Assert.Same(conditionMock, this.subVm.Condition);
+            this.mediaPlayer.Received().UpdateCropRect(modifiedCropRect);
+            Assert.Equal(10, this.subVm.CropRectX);
+            Assert.Equal(20, this.subVm.CropRectY);
+            Assert.Equal(400, this.subVm.CropRectWidth);
+            Assert.Equal(300, this.subVm.CropRectHeight);
         }
 
         protected virtual void Dispose(bool disposing)

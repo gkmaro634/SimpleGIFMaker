@@ -31,6 +31,7 @@ namespace SimpleGIFMaker.Tests.Domains
             Assert.Equal(23.5, movie.FrameLength.TotalSeconds, 0.1);
             Assert.Equal(705, movie.FrameCount);
             Assert.Equal(30, movie.FrameRate);
+            Assert.Equal(-90, movie.Rotation);
         }
 
         [Fact]

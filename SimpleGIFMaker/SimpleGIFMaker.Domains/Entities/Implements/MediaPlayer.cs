@@ -5,8 +5,10 @@ namespace SimpleGIFMaker.Domains
     public class MediaPlayer : IMediaPlayer
     {
         public Action<IMovie> MovieChanged { get; set; } = (_) => { };
+        public Action<CropRect> CropRectChanged { get; set; } = (_) => { };
 
         private IMovie movie;
+        private CropRect cropRect = new CropRect(0, 1, 1, 1);
 
         public MediaPlayer()
         {
@@ -15,6 +17,8 @@ namespace SimpleGIFMaker.Domains
         public void SetMovie(IMovie movie)
         {
             this.movie = movie;
+            var cropRect = new CropRect(0, 0, movie.Width, movie.Height);
+            this.UpdateCropRect(cropRect);
 
             this.MovieChanged?.Invoke(this.movie);
         }
@@ -22,6 +26,21 @@ namespace SimpleGIFMaker.Domains
         public IMovie? GetCurrentMovie()
         {
             return this.movie;
+        }
+
+        public void UpdateCropRect(CropRect cropRect)
+        {
+            this.cropRect.X = cropRect.X;
+            this.cropRect.Y = cropRect.Y;
+            this.cropRect.Width = cropRect.Width;
+            this.cropRect.Height = cropRect.Height;
+
+            this.CropRectChanged?.Invoke(this.cropRect);
+        }
+
+        public CropRect GetCurrentCropRect()
+        {
+            return this.cropRect;
         }
     }
 }

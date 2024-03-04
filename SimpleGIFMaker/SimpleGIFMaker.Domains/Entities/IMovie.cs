@@ -18,6 +18,8 @@ namespace SimpleGIFMaker.Domains
 
         double FrameRate { get; set; }
 
+        int Rotation { get; set; }
+
         IGifFile CreateGifFile(IConvertCondition condition, IProgress<double> progress);
     }
 }

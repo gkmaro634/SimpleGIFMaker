@@ -15,5 +15,10 @@ namespace SimpleGIFMaker.Views
 
             this.DataContext = Ioc.Default.GetService<MediaViewModel>();
         }
+
+        private void DraggableRectangle_DragLeave(object sender, System.Windows.DragEventArgs e)
+        {
+            Console.WriteLine("aa");
+        }
     }
 }

@@ -15,7 +15,43 @@ namespace SimpleGIFMaker.ViewModels
         private MediaStateType mediaState = MediaStateType.Empty;
 
         [ObservableProperty]
-        private IConvertCondition? convertCondition;
+        internal int mediaWidth;
+
+        [ObservableProperty]
+        internal int mediaHeight;
+
+        [ObservableProperty]
+        internal int cropRectStartX;
+
+        [ObservableProperty]
+        internal int cropRectStartY;
+
+        [ObservableProperty]
+        internal int cropRectEndX;
+
+        [ObservableProperty]
+        internal int cropRectEndY;
+
+        [ObservableProperty]
+        internal int rotation;
+
+        [ObservableProperty]
+        internal int centerX;
+
+        [ObservableProperty]
+        internal int centerY;
+
+        //[ObservableProperty]
+        //internal int cropRectWidth;
+
+        //[ObservableProperty]
+        //internal int cropRectHeight;
+
+        [ObservableProperty]
+        internal string movieFilePath = string.Empty;
+
+        //[ObservableProperty]
+        //private IConvertCondition? convertCondition;
 
         private readonly IMediaPlayer mediaPlayer;
         private readonly IMovieRepository movieRepository;
@@ -37,7 +73,16 @@ namespace SimpleGIFMaker.ViewModels
                 return;
             }
 
-            // TODO: cache movie instance to bind
+            this.MovieFilePath = movie.Path;
+            this.MediaWidth = (movie.Rotation % 180) == 0 ? movie.Width : movie.Height;
+            this.MediaHeight = (movie.Rotation % 180) == 0 ? movie.Height : movie.Width;
+            this.CropRectStartX = 0;
+            this.CropRectStartY = 0;
+            this.CropRectEndX = this.MediaWidth;
+            this.CropRectEndY = this.MediaHeight;
+            this.Rotation = movie.Rotation * -1;
+            this.CenterX = movie.Width / 2;
+            this.CenterY = movie.Height / 2;
 
             this.MediaState = MediaStateType.SourceLoaded;
         }
@@ -45,13 +90,13 @@ namespace SimpleGIFMaker.ViewModels
         [RelayCommand]
         internal async Task EntryConvertControl()
         {
-            var condition = await this.convertConditionRepository.GetConvertConditionAsync(0);
-            if (condition is null)
-            {
-                return;
-            }
+            //var condition = await this.convertConditionRepository.GetConvertConditionAsync(0);
+            //if (condition is null)
+            //{
+            //    return;
+            //}
 
-            this.ConvertCondition = condition;
+            //this.ConvertCondition = condition;
 
             this.EditMode = EditModeType.ConvertSetting;
         }
@@ -59,13 +104,13 @@ namespace SimpleGIFMaker.ViewModels
         [RelayCommand]
         internal async Task EntryCrop()
         {
-            var condition = await this.convertConditionRepository.GetConvertConditionAsync(0);
-            if (condition is null)
-            {
-                return;
-            }
+            //var condition = await this.convertConditionRepository.GetConvertConditionAsync(0);
+            //if (condition is null)
+            //{
+            //    return;
+            //}
 
-            this.ConvertCondition = condition;
+            //this.ConvertCondition = condition;
 
             this.EditMode = EditModeType.CropSetting;
         }
@@ -73,13 +118,13 @@ namespace SimpleGIFMaker.ViewModels
         [RelayCommand]
         internal async Task EntryCut()
         {
-            var condition = await this.convertConditionRepository.GetConvertConditionAsync(0);
-            if (condition is null)
-            {
-                return;
-            }
+            //var condition = await this.convertConditionRepository.GetConvertConditionAsync(0);
+            //if (condition is null)
+            //{
+            //    return;
+            //}
 
-            this.ConvertCondition = condition;
+            //this.ConvertCondition = condition;
 
             this.EditMode = EditModeType.CutSetting;
         }
@@ -104,6 +149,15 @@ namespace SimpleGIFMaker.ViewModels
             }
 
             this.MediaState = MediaStateType.Pause;
+        }
+
+        [RelayCommand]
+        internal void UpdateCropRect(CropRect modifiedCropRect)
+        {
+            if (modifiedCropRect is not null)
+            {
+                this.mediaPlayer.UpdateCropRect(modifiedCropRect);
+            }
         }
     }
 }
