@@ -1,6 +1,6 @@
 using SimpleGIFMaker.Domains;
 
-namespace SimpleGIFMaker.Tests.Domains
+namespace SimpleGIFMaker.Tests.UseCases
 {
     public class uc301_StartPlayingMovieTests : IDisposable
     {

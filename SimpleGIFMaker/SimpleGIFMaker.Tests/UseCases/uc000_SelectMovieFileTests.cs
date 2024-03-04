@@ -5,7 +5,7 @@ using SimpleGIFMaker.ViewModels;
 using System;
 using Xunit;
 
-namespace SimpleGIFMaker.Tests.Domains
+namespace SimpleGIFMaker.Tests.UseCases
 {
     public class uc000_SelectMovieFileTests : IDisposable
     {

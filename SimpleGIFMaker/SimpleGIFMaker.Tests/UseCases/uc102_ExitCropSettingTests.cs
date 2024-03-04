@@ -4,7 +4,7 @@ using SimpleGIFMaker.Domains.Repositories;
 using SimpleGIFMaker.ViewModels;
 using static SimpleGIFMaker.Models.Definitions;
 
-namespace SimpleGIFMaker.Tests.Domains
+namespace SimpleGIFMaker.Tests.UseCases
 {
     public class uc102_ExitCropSettingTests : IDisposable
     {
