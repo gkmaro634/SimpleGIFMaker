@@ -15,17 +15,17 @@ namespace SimpleGIFMaker.ViewModels
         private readonly IConvertConditionRepository convertConditionRepository;
         private readonly IGifFileRepository gifFileRepository;
 
-        [ObservableProperty]
-        private List<ScaleSelectItem> scaleSelectItems = new();
+        //[ObservableProperty]
+        //private List<ScaleSelectItem> scaleSelectItems = new();
+
+        //[ObservableProperty]
+        //private IConvertCondition? condition;
 
         [ObservableProperty]
-        private IConvertCondition? condition;
+        private string filePath = string.Empty;
 
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(ExecConvertCommand))]
-        private IMovie? movie;
-
-        [ObservableProperty]
         private MediaStateType mediaState = MediaStateType.Empty;
 
         internal Func<IMovie?> selectMovieFileFunc;
@@ -43,29 +43,29 @@ namespace SimpleGIFMaker.ViewModels
 
             this.selectMovieFileFunc = this.SelectMovieFile;
 
-            var items = Enumerable.Range(1, 10).Select(v =>
-            {
-                var label = v == 1 ? "1" : $"1/{v}";
-                var item = new ScaleSelectItem(label, 1d / (double)v);
-                return item;
-            });
-            this.ScaleSelectItems.AddRange(items);
+            //var items = Enumerable.Range(1, 10).Select(v =>
+            //{
+            //    var label = v == 1 ? "1" : $"1/{v}";
+            //    var item = new ScaleSelectItem(label, 1d / (double)v);
+            //    return item;
+            //});
+            //this.ScaleSelectItems.AddRange(items);
         }
 
         [RelayCommand]
         internal async Task Loaded()
         {
-            var condition = await this.convertConditionRepository.GetConvertConditionAsync(0);
-            this.Condition = condition;
+            //var condition = await this.convertConditionRepository.GetConvertConditionAsync(0);
+            //this.Condition = condition;
         }
 
         [RelayCommand]
         internal async Task Unloaded()
         {
-            if (this.Condition is not null)
-            {
-                await this.convertConditionRepository.UpdateConvertConditionAsync(0, this.Condition);
-            }
+            //if (this.Condition is not null)
+            //{
+            //    await this.convertConditionRepository.UpdateConvertConditionAsync(0, this.Condition);
+            //}
         }
 
         internal IMovie? SelectMovieFile()
@@ -93,9 +93,10 @@ namespace SimpleGIFMaker.ViewModels
                 return;
             }
 
+            this.FilePath = movie.Path;
+
             var condition = new ConvertCondition(movie);
-            this.Condition = condition;
-            this.Movie = movie;
+            //this.Condition = condition;
 
             await this.convertConditionRepository.AddConvertConditionAsync(condition);
             await this.movieRepository.AddMovieAsync(movie);
@@ -128,28 +129,28 @@ namespace SimpleGIFMaker.ViewModels
 
         private bool CanConvert()
         {
-            return this.Movie is object;
+            return this.MediaState.HasFlag(MediaStateType.SourceLoaded);
         }
 
-        [RelayCommand]
-        internal async Task UpdateGifScale(double scale)
-        {
-            if (this.Condition is not null)
-            {
-                this.Condition.GifScale = scale;
-                await this.convertConditionRepository.UpdateConvertConditionAsync(0, this.Condition);
-            }
-        }
+        //[RelayCommand]
+        //internal async Task UpdateGifScale(double scale)
+        //{
+        //    if (this.Condition is not null)
+        //    {
+        //        this.Condition.GifScale = scale;
+        //        await this.convertConditionRepository.UpdateConvertConditionAsync(0, this.Condition);
+        //    }
+        //}
 
-        [RelayCommand]
-        internal async Task UpdateGifFrameRate(int frameRate)
-        {
-            if (this.Condition is not null)
-            {
-                this.Condition.GifFrameRate = frameRate;
-                await this.convertConditionRepository.UpdateConvertConditionAsync(0, this.Condition);
-            }
-        }
+        //[RelayCommand]
+        //internal async Task UpdateGifFrameRate(int frameRate)
+        //{
+        //    if (this.Condition is not null)
+        //    {
+        //        this.Condition.GifFrameRate = frameRate;
+        //        await this.convertConditionRepository.UpdateConvertConditionAsync(0, this.Condition);
+        //    }
+        //}
 
     }
 }
