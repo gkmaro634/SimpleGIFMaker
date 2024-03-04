@@ -74,8 +74,10 @@ namespace SimpleGIFMaker.ViewModels
             }
 
             this.MovieFilePath = movie.Path;
-            this.MediaWidth = (movie.Rotation % 180) == 0 ? movie.Width : movie.Height;
-            this.MediaHeight = (movie.Rotation % 180) == 0 ? movie.Height : movie.Width;
+            //this.MediaWidth = (movie.Rotation % 180) == 0 ? movie.Width : movie.Height;
+            //this.MediaHeight = (movie.Rotation % 180) == 0 ? movie.Height : movie.Width;
+            this.MediaWidth = movie.Width;
+            this.MediaHeight = movie.Height;
             this.CropRectStartX = 0;
             this.CropRectStartY = 0;
             this.CropRectEndX = this.MediaWidth;

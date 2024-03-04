@@ -9,45 +9,67 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="600"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <Viewbox Grid.Row="0" Stretch="Uniform" Width="600" Height="400">
-            <Grid>
-                <!--<Border x:Name="DummyMediaImage" BorderThickness="8" BorderBrush="Gray" Background="Gray"
+        <Grid x:Name="mediaRegion" Grid.Row="0" Width="600" Height="600" Background="LightGray">
+            <Viewbox Stretch="Uniform" MaxWidth="{Binding ElementName=mediaRegion, Path=ActualWidth}" MaxHeight="{Binding ElementName=mediaRegion, Path=ActualHeight}">
+                <Viewbox.LayoutTransform>
+                    <RotateTransform 
+                            Angle="{Binding Rotation, Mode=OneWay}"
+                            CenterX="{Binding CenterX, Mode=OneWay}" 
+                            CenterY="{Binding CenterY, Mode=OneWay}"
+                            />
+                </Viewbox.LayoutTransform>
+                <Grid Background="LightGray">
+                    <!--<Border x:Name="DummyMediaImage" BorderThickness="8" BorderBrush="Gray" Background="Gray"
                         Width="1500" Height="{Binding MediaHeight}" Margin="0"/>-->
 
-                <MediaElement Visibility="Hidden"
+                    <MediaElement
                     x:Name="media"
                     Source="{Binding MovieFilePath, Mode=OneWay}"
-                    LoadedBehavior="Pause"
+                    LoadedBehavior="Play"
                     Volume="0"
                     Panel.ZIndex="1"
                     >
-                    <MediaElement.LayoutTransform>
+                        <!--<MediaElement.LayoutTransform>
                         <RotateTransform 
                             Angle="{Binding Rotation, Mode=OneWay}"
                             CenterX="{Binding CenterX, Mode=OneWay}" 
                             CenterY="{Binding CenterY, Mode=OneWay}"
                             />
-                    </MediaElement.LayoutTransform>
-                </MediaElement>
+                    </MediaElement.RenderTransform>-->
+                    </MediaElement>
 
-                <ctrls:DraggableRectangle
+                    <ctrls:DraggableRectangle
                     Width="{Binding MediaWidth, Mode=OneWay}" 
                     Height="{Binding MediaHeight, Mode=OneWay}"
-                    StartX="{Binding CropRectStartX, Mode=TwoWay}"
-                    StartY="{Binding CropRectStartY, Mode=TwoWay}"
-                    EndX="{Binding CropRectEndX, Mode=TwoWay}"
-                    EndY="{Binding CropRectEndY, Mode=TwoWay}"
+                    StartX="100"
+                    StartY="200"
+                    EndX="1000"
+                    EndY="800"
                     Panel.ZIndex="2"
                     />
-            </Grid>
-        </Viewbox>
+                </Grid>
+            </Viewbox>
+        </Grid>
 
 
-        <TabControl Grid.Row="1">
+        <Grid Grid.Row="1" Width="{Binding ElementName=mediaRegion, Path=ActualWidth}" Height="32"
+              >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Button Content=">" Grid.Column="0"/>
+            <Slider x:Name="seekBar" Grid.Column="1"/>
+            <TextBlock Grid.Column="2" Text="00:00:23" Width="48" HorizontalAlignment="Right"/>
+        </Grid>
+
+        <TabControl Grid.Row="2">
             <TabItem Header="GIF Convert">
                 <views:ConvertControlView/>
             </TabItem>
