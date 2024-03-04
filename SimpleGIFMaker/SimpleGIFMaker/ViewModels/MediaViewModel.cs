@@ -83,5 +83,27 @@ namespace SimpleGIFMaker.ViewModels
 
             this.EditMode = EditModeType.CutSetting;
         }
+
+        [RelayCommand]
+        internal void StartPlayingMovie()
+        {
+            if (this.MediaState.HasFlag(MediaStateType.SourceLoaded) == false)
+            {
+                return;
+            }
+
+            this.MediaState = MediaStateType.Playing;
+        }
+
+        [RelayCommand]
+        internal void StopPlayingMovie()
+        {
+            if (this.MediaState != MediaStateType.Playing)
+            {
+                return;
+            }
+
+            this.MediaState = MediaStateType.Pause;
+        }
     }
 }
