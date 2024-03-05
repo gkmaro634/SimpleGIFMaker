@@ -9,7 +9,7 @@ namespace SimpleGIFMaker.ViewModels
     internal partial class CropSettingViewModel : ObservableObject
     {
         //[ObservableProperty]
-        private IConvertCondition? condition;
+        internal IConvertCondition? condition;
 
         [ObservableProperty]
         internal int cropRectX;

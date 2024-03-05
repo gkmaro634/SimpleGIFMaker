@@ -43,7 +43,7 @@ namespace SimpleGIFMaker.Tests.UseCases
             //
             Assert.Equal(Definitions.EditModeType.CropSetting, this.vm.EditMode);
             //Assert.Same(conditionMock, this.vm.ConvertCondition);
-            Assert.Same(conditionMock, this.subVm.Condition);
+            Assert.Same(conditionMock, this.subVm.condition);
         }
 
         protected virtual void Dispose(bool disposing)

@@ -38,11 +38,14 @@ namespace SimpleGIFMaker.Tests.UseCases
                 .Do(x => this.mediaPlayer.CropRectChanged?.Invoke(x.Arg<CropRect>()));
 
             //
-            var modifiedCropRect = new CropRect(10, 20, 400, 300);
-            this.vm.UpdateCropRect(modifiedCropRect);
+            this.vm.CropRectStartX = 10;
+            this.vm.CropRectEndX = 10 + 400;
+            this.vm.CropRectStartY = 20;
+            this.vm.CropRectEndY = 20 + 300;
+            this.vm.UpdateCropRectCommand.Execute("");
 
             //
-            this.mediaPlayer.Received().UpdateCropRect(modifiedCropRect);
+            this.mediaPlayer.Received().UpdateCropRect(Arg.Any<CropRect>());
             Assert.Equal(10, this.subVm.CropRectX);
             Assert.Equal(20, this.subVm.CropRectY);
             Assert.Equal(400, this.subVm.CropRectWidth);

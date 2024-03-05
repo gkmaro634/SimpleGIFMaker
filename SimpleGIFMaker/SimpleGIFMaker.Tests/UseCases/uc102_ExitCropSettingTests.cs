@@ -44,7 +44,7 @@ namespace SimpleGIFMaker.Tests.UseCases
             this.subVm.UnloadedCommand.Execute("");
 
             //
-            await this.convertConditionRepository.Received().UpdateConvertConditionAsync(0, this.subVm.Condition!);
+            await this.convertConditionRepository.Received().UpdateConvertConditionAsync(0, this.subVm.condition!);
             Assert.Equal(EditModeType.ConvertSetting, this.vm.EditMode);
         }
 
