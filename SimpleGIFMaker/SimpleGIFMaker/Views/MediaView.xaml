@@ -134,6 +134,9 @@
                 x:Name="timeline"
                 Grid.Column="2"
                 Height="64"
+                DragCompletedCommand="{Binding UpdateCutRangeCommand, Mode=OneWay}"
+                MaskEndPosition="{Binding EndPosition, Mode=OneWayToSource}"
+                MaskStartPosition="{Binding StartPosition, Mode=OneWayToSource}"
                 />
             <TextBlock
                 x:Name="currentPositionText"

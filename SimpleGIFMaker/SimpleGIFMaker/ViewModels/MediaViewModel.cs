@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using SimpleGIFMaker.Domains;
 using SimpleGIFMaker.Domains.Repositories;
+using System.Globalization;
 using System.Windows;
 using static SimpleGIFMaker.Models.Definitions;
 
@@ -49,6 +50,12 @@ namespace SimpleGIFMaker.ViewModels
 
         [ObservableProperty]
         internal int selectedTabIndex = 0;
+
+        [ObservableProperty]
+        internal double startPosition = 0d;
+
+        [ObservableProperty]
+        internal double endPosition = 0d;
 
         private readonly IMediaPlayer mediaPlayer;
         private readonly IMovieRepository movieRepository;
@@ -215,5 +222,19 @@ namespace SimpleGIFMaker.ViewModels
                 this.ScaleInv = 1d / this.Scale;
             }
         }
+
+        [RelayCommand]
+        internal void UpdateCutRange()
+        {
+            if (this.CurrentMovie is not null)
+            {
+                var length = this.CurrentMovie.FrameLength.TotalSeconds;
+                var start = this.StartPosition * length;
+                var end = this.EndPosition * length;
+                var modifiedCutRange = new CutRange(TimeSpan.FromSeconds(start), TimeSpan.FromSeconds(end));
+                this.mediaPlayer.UpdateCutRange(modifiedCutRange);
+            }
+        }
+
     }
 }

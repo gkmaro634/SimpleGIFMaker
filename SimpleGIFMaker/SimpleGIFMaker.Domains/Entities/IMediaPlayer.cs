@@ -8,6 +8,8 @@ namespace SimpleGIFMaker.Domains
 
         Action<CropRect> CropRectChanged { get; set; }
 
+        Action<CutRange> CutRangeChanged { get; set; }
+
         void SetMovie(IMovie movie);
 
         IMovie? GetCurrentMovie();
@@ -15,5 +17,10 @@ namespace SimpleGIFMaker.Domains
         void UpdateCropRect(CropRect cropRect);
 
         CropRect GetCurrentCropRect();
+
+        void UpdateCutRange(CutRange cutRange);
+
+        CutRange GetCurrentCutRange();
+
     }
 }
