@@ -25,7 +25,7 @@ namespace SimpleGIFMaker.Tests.UseCases
             this.movieRepository = Substitute.For<IMovieRepository>();
 
             this.vm = new MediaViewModel(this.mediaPlayer, this.movieRepository, this.convertConditionRepository);
-            this.subVm = new CutSettingViewModel(this.convertConditionRepository);
+            this.subVm = new CutSettingViewModel(this.mediaPlayer, this.convertConditionRepository);
         }
 
         [Fact]
@@ -45,7 +45,7 @@ namespace SimpleGIFMaker.Tests.UseCases
             this.subVm.UnloadedCommand.Execute("");
 
             //
-            await this.convertConditionRepository.Received().UpdateConvertConditionAsync(0, this.subVm.Condition!);
+            await this.convertConditionRepository.Received().UpdateConvertConditionAsync(0, this.subVm.condition!);
             Assert.Equal(EditModeType.ConvertSetting, this.vm.EditMode);
         }
 

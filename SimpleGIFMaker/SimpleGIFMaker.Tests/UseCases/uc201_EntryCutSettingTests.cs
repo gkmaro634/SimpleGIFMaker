@@ -24,7 +24,7 @@ namespace SimpleGIFMaker.Tests.UseCases
             this.movieRepository = Substitute.For<IMovieRepository>();
 
             this.vm = new MediaViewModel(this.mediaPlayer, this.movieRepository, this.convertConditionRepository);
-            this.subVm = new CutSettingViewModel(this.convertConditionRepository);
+            this.subVm = new CutSettingViewModel(this.mediaPlayer, this.convertConditionRepository);
         }
 
         [Fact]
@@ -42,7 +42,7 @@ namespace SimpleGIFMaker.Tests.UseCases
             //
             Assert.Equal(Definitions.EditModeType.CutSetting, this.vm.EditMode);
             //Assert.Same(conditionMock, this.vm.ConvertCondition);
-            Assert.Same(conditionMock, this.subVm.Condition);
+            Assert.Same(conditionMock, this.subVm.condition);
         }
 
         protected virtual void Dispose(bool disposing)
