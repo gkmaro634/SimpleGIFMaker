@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using SimpleGIFMaker.Domains;
 using SimpleGIFMaker.Domains.Repositories;
+using SimpleGIFMaker.Views;
 using static SimpleGIFMaker.Models.Definitions;
 
 namespace SimpleGIFMaker.ViewModels
@@ -23,6 +24,8 @@ namespace SimpleGIFMaker.ViewModels
 
         internal Func<IMovie?> selectMovieFileFunc;
 
+        internal Action showResultWindowAction = () => { };
+
         public ConvertControlViewModel(
             IMediaPlayer mediaPlayer,
             IMovieRepository movieRepository,
@@ -35,6 +38,7 @@ namespace SimpleGIFMaker.ViewModels
             this.gifFileRepository = gifFileRepository;
 
             this.selectMovieFileFunc = this.SelectMovieFile;
+            this.showResultWindowAction = this.ShowConvertResult;
         }
 
         [RelayCommand]
@@ -103,8 +107,20 @@ namespace SimpleGIFMaker.ViewModels
 
             var progress = new Progress<double>();
             var gif = movie.CreateGifFile(condition, progress);
+            if (gif is null)
+            {
+                return;
+            }
 
             await this.gifFileRepository.AddGifFileAsync(gif);
+
+            this.showResultWindowAction?.Invoke();
+        }
+
+        internal void ShowConvertResult()
+        {
+            var resultWindow = new ConvertResultWindow();
+            _ = resultWindow.ShowDialog();
         }
 
         private bool CanConvert()
