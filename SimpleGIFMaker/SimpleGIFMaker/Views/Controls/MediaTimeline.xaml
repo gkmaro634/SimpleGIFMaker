@@ -1,0 +1,52 @@
+﻿<UserControl
+    x:Class="SimpleGIFMaker.Views.Controls.MediaTimeline"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:SimpleGIFMaker.Views.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="thisControl"
+    d:DesignHeight="64"
+    d:DesignWidth="200"
+    mc:Ignorable="d"
+    >
+    <Canvas
+        x:Name="dragCanvas"
+        Width="{Binding ElementName=thisControl, Path=ActualWidth}"
+        Height="48"
+        >
+        <local:DraggableFlag
+            x:Name="maskStartFlag"
+            Reverse="False"
+            />
+        <local:DraggableFlag
+            x:Name="maskEndFlag"
+            Reverse="True"
+            />
+        <Rectangle
+            x:Name="maskStart"
+            Canvas.Top="8"
+            Height="32"
+            Fill="Black"
+            Opacity="0.5"
+            />
+        <Rectangle
+            x:Name="maskEnd"
+            Canvas.Top="8"
+            Height="32"
+            Fill="Black"
+            Opacity="0.5"
+            />
+
+        <Slider
+            x:Name="slider"
+            Canvas.Top="8"
+            Width="{Binding ElementName=thisControl, Path=ActualWidth}"
+            Height="32"
+            Maximum="1"
+            Minimum="0"
+            Value="{Binding ElementName=thisControl, Path=CurrentPosition}"
+            />
+
+    </Canvas>
+</UserControl>

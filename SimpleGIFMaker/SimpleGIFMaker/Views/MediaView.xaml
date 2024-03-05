@@ -18,6 +18,39 @@
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
+        <!--  Tab  -->
+        <TabControl
+            x:Name="editModeTab"
+            Grid.Row="0"
+            Width="600"
+            SelectedIndex="{Binding SelectedTabIndex, Mode=OneWayToSource}"
+            >
+            <bh:Interaction.Triggers>
+                <bh:EventTrigger EventName="SelectionChanged">
+                    <bh:InvokeCommandAction Command="{Binding SelectTabCommand, Mode=OneWay}" />
+                </bh:EventTrigger>
+            </bh:Interaction.Triggers>
+            <TabItem
+                x:Name="gifConvertTab"
+                Header="GIF Convert"
+                >
+                <views:ConvertControlView />
+            </TabItem>
+            <TabItem
+                x:Name="cropSettingTab"
+                Header="Crop"
+                >
+                <views:CropSettingView />
+            </TabItem>
+            <TabItem
+                x:Name="cutSettingTab"
+                Header="Cut"
+                >
+                <views:CutSettingView />
+            </TabItem>
+        </TabControl>
+
+        <!--  Media Player  -->
         <Grid
             x:Name="mediaRegion"
             Grid.Row="1"
@@ -53,6 +86,7 @@
                         />
 
                     <ctrls:DraggableRectangle
+                        x:Name="cropRect"
                         Width="{Binding CurrentMovie.Width, Mode=OneWay}"
                         Height="{Binding CurrentMovie.Height, Mode=OneWay}"
                         Panel.ZIndex="2"
@@ -61,36 +95,24 @@
                         EndY="{Binding CropRectEndY, Mode=TwoWay}"
                         StartX="{Binding CropRectStartX, Mode=TwoWay}"
                         StartY="{Binding CropRectStartY, Mode=TwoWay}"
-                        >
-                        <ctrls:DraggableRectangle.Style>
-                            <Style TargetType="ctrls:DraggableRectangle">
-                                <Setter Property="IsEditable" Value="False" />
-                                <Style.Triggers>
-                                    <DataTrigger
-                                        Binding="{Binding EditMode, Mode=OneWay}"
-                                        Value="CropSetting"
-                                        >
-                                        <Setter Property="IsEditable" Value="True" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </ctrls:DraggableRectangle.Style>
-                    </ctrls:DraggableRectangle>
+                        />
                 </Grid>
             </Viewbox>
         </Grid>
 
-
+        <!--  Timeline  -->
         <Grid
             x:Name="mediaControl"
             Grid.Row="2"
             Width="{Binding ElementName=mediaRegion, Path=ActualWidth}"
-            Height="32"
+            Height="64"
             >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="80" />
+                <ColumnDefinition Width="8" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="8" />
+                <ColumnDefinition Width="64" />
             </Grid.ColumnDefinitions>
             <Button
                 x:Name="startButton"
@@ -108,47 +130,18 @@
                 Command="{Binding StopPlayingMovieCommand, Mode=OneWay}"
                 Content="Pause"
                 />
-            <Slider
-                x:Name="seekBar"
-                Grid.Column="1"
+            <ctrls:MediaTimeline
+                x:Name="timeline"
+                Grid.Column="2"
+                Height="64"
                 />
             <TextBlock
-                Grid.Column="2"
-                Width="48"
-                HorizontalAlignment="Right"
-                Text="00:00:23"
+                x:Name="currentPositionText"
+                Grid.Column="4"
+                Width="64"
+                VerticalAlignment="Center"
                 />
         </Grid>
 
-        <TabControl
-            x:Name="editModeTab"
-            Grid.Row="0"
-            Width="600"
-            SelectedIndex="{Binding SelectedTabIndex, Mode=OneWayToSource}"
-            >
-            <bh:Interaction.Triggers>
-                <bh:EventTrigger EventName="SelectionChanged">
-                    <bh:InvokeCommandAction Command="{Binding SelectTabCommand, Mode=OneWay}" />
-                </bh:EventTrigger>
-            </bh:Interaction.Triggers>
-            <TabItem
-                x:Name="gifConvertTab"
-                Header="GIF Convert"
-                >
-                <views:ConvertControlView />
-            </TabItem>
-            <TabItem
-                x:Name="cropSettingTab"
-                Header="Crop"
-                >
-                <views:CropSettingView />
-            </TabItem>
-            <TabItem
-                x:Name="cutSettingTab"
-                Header="Cut"
-                >
-                <views:CutSettingView />
-            </TabItem>
-        </TabControl>
     </Grid>
 </UserControl>

@@ -9,6 +9,7 @@ namespace SimpleGIFMaker.Views.Controls
     /// </summary>
     public partial class DraggableRectangle : UserControl
     {
+        #region props
         public static readonly DependencyProperty DragCompletedCommandProperty =
             DependencyProperty.Register("DragCompletedCommand", typeof(ICommand), typeof(DraggableRectangle), new PropertyMetadata(null));
 
@@ -82,6 +83,7 @@ namespace SimpleGIFMaker.Views.Controls
             get { return (double)GetValue(SymbolScaleProperty); }
             set { SetValue(SymbolScaleProperty, value); }
         }
+        #endregion
 
         private readonly List<DraggableSymbol> cornerSymbols;
         private bool isDragging = false;
