@@ -51,8 +51,7 @@ namespace SimpleGIFMaker.Views
 
                 this.media.Position = TimeSpan.Zero;
 
-                this.timeline.CurrentPosition = 0;//.slider.Value = 0;
-                //this.timeline.slider.Value = 0;
+                this.timeline.CurrentPosition = 0;
             }
         }
 
@@ -78,7 +77,6 @@ namespace SimpleGIFMaker.Views
                 if (this.vm.MediaState == Models.Definitions.MediaStateType.Playing)
                 {
                     this.media.Play();
-                    //this.timer.Start();
 
                     this.startButton.Visibility = System.Windows.Visibility.Hidden;
                     this.pauseButton.Visibility = System.Windows.Visibility.Visible;
@@ -86,7 +84,6 @@ namespace SimpleGIFMaker.Views
                 else if (this.vm.MediaState == Models.Definitions.MediaStateType.Pause)
                 {
                     this.media.Pause();
-                    //this.timer.Stop();
 
                     this.startButton.Visibility = System.Windows.Visibility.Visible;
                     this.pauseButton.Visibility = System.Windows.Visibility.Hidden;
@@ -160,6 +157,5 @@ namespace SimpleGIFMaker.Views
             // 現在時刻表示を更新
             this.currentPositionText.Text = this.media.Position.ToString(@"hh\:mm\:ss");
         }
-
     }
 }
