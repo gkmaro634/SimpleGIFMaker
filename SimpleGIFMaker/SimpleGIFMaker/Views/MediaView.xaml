@@ -7,7 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:views="clr-namespace:SimpleGIFMaker.Views"
-    d:DesignHeight="450"
+    d:DesignHeight="1000"
     d:DesignWidth="800"
     mc:Ignorable="d"
     >
@@ -47,7 +47,7 @@
                     <MediaElement
                         x:Name="media"
                         Panel.ZIndex="1"
-                        LoadedBehavior="Play"
+                        LoadedBehavior="Manual"
                         Source="{Binding CurrentMovie.Path, Mode=OneWay}"
                         Volume="0"
                         />
@@ -82,18 +82,31 @@
 
 
         <Grid
+            x:Name="mediaControl"
             Grid.Row="2"
             Width="{Binding ElementName=mediaRegion, Path=ActualWidth}"
             Height="32"
             >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
             <Button
+                x:Name="startButton"
                 Grid.Column="0"
-                Content="&gt;"
+                Width="80"
+                Height="32"
+                Command="{Binding StartPlayingMovieCommand, Mode=OneWay}"
+                Content="Start"
+                />
+            <Button
+                x:Name="pauseButton"
+                Grid.Column="0"
+                Width="80"
+                Height="32"
+                Command="{Binding StopPlayingMovieCommand, Mode=OneWay}"
+                Content="Pause"
                 />
             <Slider
                 x:Name="seekBar"

@@ -5,34 +5,52 @@ VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleGIFMaker.Tests", "SimpleGIFMaker.Tests\SimpleGIFMaker.Tests.csproj", "{0C1C4CC9-3F29-4C29-972E-8214B82D72DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleGIFMaker.Domains", "SimpleGIFMaker.Domains\SimpleGIFMaker.Domains.csproj", "{EDCCB779-FC4C-4A97-B1F3-863E2A33EF76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleGIFMaker.Domains", "SimpleGIFMaker.Domains\SimpleGIFMaker.Domains.csproj", "{EDCCB779-FC4C-4A97-B1F3-863E2A33EF76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleGIFMaker.DataSource.FileSystem", "SimpleGIFMaker.DataSource.FileSystem\SimpleGIFMaker.DataSource.FileSystem.csproj", "{2B1591A8-DE2A-425A-95EC-5055CC2EA904}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleGIFMaker.DataSource.FileSystem", "SimpleGIFMaker.DataSource.FileSystem\SimpleGIFMaker.DataSource.FileSystem.csproj", "{2B1591A8-DE2A-425A-95EC-5055CC2EA904}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleGIFMaker", "SimpleGIFMaker\SimpleGIFMaker.csproj", "{85C3A2C2-91D9-4F06-8C0E-76F46960E54C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleGIFMaker", "SimpleGIFMaker\SimpleGIFMaker.csproj", "{85C3A2C2-91D9-4F06-8C0E-76F46960E54C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{0C1C4CC9-3F29-4C29-972E-8214B82D72DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0C1C4CC9-3F29-4C29-972E-8214B82D72DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C1C4CC9-3F29-4C29-972E-8214B82D72DC}.Debug|x64.ActiveCfg = Debug|x64
+		{0C1C4CC9-3F29-4C29-972E-8214B82D72DC}.Debug|x64.Build.0 = Debug|x64
 		{0C1C4CC9-3F29-4C29-972E-8214B82D72DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C1C4CC9-3F29-4C29-972E-8214B82D72DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C1C4CC9-3F29-4C29-972E-8214B82D72DC}.Release|x64.ActiveCfg = Release|x64
+		{0C1C4CC9-3F29-4C29-972E-8214B82D72DC}.Release|x64.Build.0 = Release|x64
 		{EDCCB779-FC4C-4A97-B1F3-863E2A33EF76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EDCCB779-FC4C-4A97-B1F3-863E2A33EF76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDCCB779-FC4C-4A97-B1F3-863E2A33EF76}.Debug|x64.ActiveCfg = Debug|x64
+		{EDCCB779-FC4C-4A97-B1F3-863E2A33EF76}.Debug|x64.Build.0 = Debug|x64
 		{EDCCB779-FC4C-4A97-B1F3-863E2A33EF76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDCCB779-FC4C-4A97-B1F3-863E2A33EF76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDCCB779-FC4C-4A97-B1F3-863E2A33EF76}.Release|x64.ActiveCfg = Release|x64
+		{EDCCB779-FC4C-4A97-B1F3-863E2A33EF76}.Release|x64.Build.0 = Release|x64
 		{2B1591A8-DE2A-425A-95EC-5055CC2EA904}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2B1591A8-DE2A-425A-95EC-5055CC2EA904}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B1591A8-DE2A-425A-95EC-5055CC2EA904}.Debug|x64.ActiveCfg = Debug|x64
+		{2B1591A8-DE2A-425A-95EC-5055CC2EA904}.Debug|x64.Build.0 = Debug|x64
 		{2B1591A8-DE2A-425A-95EC-5055CC2EA904}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B1591A8-DE2A-425A-95EC-5055CC2EA904}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B1591A8-DE2A-425A-95EC-5055CC2EA904}.Release|x64.ActiveCfg = Release|x64
+		{2B1591A8-DE2A-425A-95EC-5055CC2EA904}.Release|x64.Build.0 = Release|x64
 		{85C3A2C2-91D9-4F06-8C0E-76F46960E54C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{85C3A2C2-91D9-4F06-8C0E-76F46960E54C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85C3A2C2-91D9-4F06-8C0E-76F46960E54C}.Debug|x64.ActiveCfg = Debug|x64
+		{85C3A2C2-91D9-4F06-8C0E-76F46960E54C}.Debug|x64.Build.0 = Debug|x64
 		{85C3A2C2-91D9-4F06-8C0E-76F46960E54C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{85C3A2C2-91D9-4F06-8C0E-76F46960E54C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85C3A2C2-91D9-4F06-8C0E-76F46960E54C}.Release|x64.ActiveCfg = Release|x64
+		{85C3A2C2-91D9-4F06-8C0E-76F46960E54C}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

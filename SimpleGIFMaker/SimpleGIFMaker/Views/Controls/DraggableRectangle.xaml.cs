@@ -100,6 +100,8 @@ namespace SimpleGIFMaker.Views.Controls
             this.c2.MouseMove += C2_MouseMove;
             this.c3.MouseMove += C3_MouseMove;
             this.c4.MouseMove += C4_MouseMove;
+
+            this.UpdateSymbolState();
         }
 
         private void C1_MouseMove(object sender, MouseEventArgs e)

@@ -13,10 +13,12 @@ namespace SimpleGIFMaker.ViewModels
         private EditModeType editMode = EditModeType.ConvertSetting;
 
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(StartPlayingMovieCommand))]
+        [NotifyCanExecuteChangedFor(nameof(StopPlayingMovieCommand))]
         private MediaStateType mediaState = MediaStateType.Empty;
 
         [ObservableProperty]
-        internal IMovie currentMovie;
+        internal IMovie? currentMovie;
 
         [ObservableProperty]
         internal int cropRectStartX;
@@ -66,6 +68,11 @@ namespace SimpleGIFMaker.ViewModels
             if (movie is null)
             {
                 return;
+            }
+
+            if (this.MediaState == MediaStateType.Playing)
+            {
+                this.StopPlayingMovie();
             }
 
             this.CurrentMovie = movie;
@@ -143,7 +150,7 @@ namespace SimpleGIFMaker.ViewModels
             await Task.CompletedTask;
         }
 
-        [RelayCommand]
+        [RelayCommand(CanExecute = nameof(CanStartPlaying))]
         internal void StartPlayingMovie()
         {
             if (this.MediaState.HasFlag(MediaStateType.SourceLoaded) == false)
@@ -154,7 +161,12 @@ namespace SimpleGIFMaker.ViewModels
             this.MediaState = MediaStateType.Playing;
         }
 
-        [RelayCommand]
+        private bool CanStartPlaying()
+        {
+            return this.MediaState.HasFlag(MediaStateType.SourceLoaded);
+        }
+
+        [RelayCommand(CanExecute = nameof(CanStopPlaying))]
         internal void StopPlayingMovie()
         {
             if (this.MediaState != MediaStateType.Playing)
@@ -163,6 +175,11 @@ namespace SimpleGIFMaker.ViewModels
             }
 
             this.MediaState = MediaStateType.Pause;
+        }
+
+        private bool CanStopPlaying()
+        {
+            return this.MediaState.HasFlag(MediaStateType.Playing);
         }
 
         /// <summary>
