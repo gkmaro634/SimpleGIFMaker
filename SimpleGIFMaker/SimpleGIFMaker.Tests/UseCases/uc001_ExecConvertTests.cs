@@ -25,6 +25,7 @@ namespace SimpleGIFMaker.Tests.UseCases
             this.movieRepository = Substitute.For<IMovieRepository>();
 
             this.vm = new ConvertControlViewModel(this.mediaPlayer, this.movieRepository, this.convertConditionRepository, this.gifFileRepository);
+            this.vm.showResultWindowAction = () => { };
         }
 
         [Fact]

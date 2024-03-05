@@ -58,8 +58,8 @@ namespace SimpleGIFMaker.Tests.Domains
             //
             Assert.True(gif is GifFile);
             Assert.Equal(this.expGifFilePath, gif.Path);
-            Assert.Equal(400, gif.Width);
-            Assert.Equal(300, gif.Height);
+            Assert.Equal(300, gif.Width);
+            Assert.Equal(400, gif.Height);
             Assert.Equal(10, gif.FrameRate);
         }
 

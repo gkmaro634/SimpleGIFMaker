@@ -31,6 +31,9 @@ namespace SimpleGIFMaker.Tests.UseCases
         public void EditCropSetting()
         {
             //
+            var movieMock = Substitute.For<IMovie>();
+            this.vm.CurrentMovie = movieMock;
+
             var cropRect = new CropRect(0, 0, 800, 600);
             this.mediaPlayer.GetCurrentCropRect().Returns(cropRect);
             this.mediaPlayer
