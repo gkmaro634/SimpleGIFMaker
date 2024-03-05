@@ -25,6 +25,7 @@ namespace SimpleGIFMaker
                 .AddTransient<ConvertControlViewModel>()
                 .AddTransient<CropSettingViewModel>()
                 .AddTransient<CutSettingViewModel>()
+                .AddTransient<ConvertResultWindowViewModel>()
                 .BuildServiceProvider());
         }
     }

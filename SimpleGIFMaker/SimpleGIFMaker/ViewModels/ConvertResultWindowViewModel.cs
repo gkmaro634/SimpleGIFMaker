@@ -1,0 +1,59 @@
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using Microsoft.WindowsAPICodePack.Dialogs;
+using SimpleGIFMaker.Domains;
+using SimpleGIFMaker.Domains.Repositories;
+using SimpleGIFMaker.Views;
+using static SimpleGIFMaker.Models.Definitions;
+
+namespace SimpleGIFMaker.ViewModels
+{
+    internal partial class ConvertResultWindowViewModel : ObservableObject
+    {
+        internal Action openExplorerAction = () => { };
+
+        [ObservableProperty]
+        internal IGifFile? gifFile;
+
+        private readonly IGifFileRepository gifFileRepository;
+
+        public ConvertResultWindowViewModel(
+            IGifFileRepository gifFileRepository)
+        {
+            this.gifFileRepository = gifFileRepository;
+            this.openExplorerAction = this.OpenExplorerImpl;
+        }
+
+        [RelayCommand]
+        internal async Task Loaded()
+        {
+            this.GifFile = await this.gifFileRepository!.GetGifFileAsync(0);
+        }
+
+        [RelayCommand]
+        internal async Task Unloaded()
+        {
+            await Task.CompletedTask;
+        }
+
+        [RelayCommand]
+        internal void OpenExplorer()
+        {
+            this.openExplorerAction?.Invoke();
+        }
+
+        internal void OpenExplorerImpl()
+        {
+            if (this.GifFile is null) { return; }
+
+            var directoryPath = System.IO.Path.GetDirectoryName(this.GifFile.Path);
+            if (System.IO.Directory.Exists(directoryPath) )
+            {
+                using (var p = System.Diagnostics.Process.Start("explorer.exe", directoryPath!))
+                {
+                    ;
+                }
+            }
+        }
+    }
+}
