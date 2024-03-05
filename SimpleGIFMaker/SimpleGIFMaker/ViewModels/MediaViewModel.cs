@@ -199,9 +199,16 @@ namespace SimpleGIFMaker.ViewModels
         [RelayCommand]
         internal void UpdateCropRect()
         {
-            var cropRectWidth = this.CropRectEndX - this.CropRectStartX;
-            var cropRectHeight = this.CropRectEndY - this.CropRectStartY;
-            var modifiedCropRect = new CropRect(this.CropRectStartX, this.CropRectStartY, cropRectWidth, cropRectHeight);
+            if (this.CurrentMovie is null)
+            {
+                return;
+            }
+
+            var width = this.CropRectEndX - this.CropRectStartX;
+            var height = this.CropRectEndY - this.CropRectStartY;
+            var x = this.CropRectStartX;
+            var y = this.CropRectStartY;
+            var modifiedCropRect = new CropRect(x, y, width, height);
             this.mediaPlayer.UpdateCropRect(modifiedCropRect);
         }
 

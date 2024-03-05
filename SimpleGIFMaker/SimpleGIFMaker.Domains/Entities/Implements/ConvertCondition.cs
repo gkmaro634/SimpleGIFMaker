@@ -25,9 +25,9 @@
 
         public double GifScale { get; set; } = ConvertCondition.DefaultGifScale;
 
-        public int ScaledWidth => (int)(this.RoiWidth * GifScale);
+        //public int ScaledWidth => (int)(this.RoiWidth * GifScale);
 
-        public int ScaledHeight => (int)(this.RoiHeight * GifScale);
+        //public int ScaledHeight => (int)(this.RoiHeight * GifScale);
 
         public ConvertCondition()
         {

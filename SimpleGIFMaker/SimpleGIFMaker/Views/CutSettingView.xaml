@@ -30,7 +30,6 @@
             DisplayMemberPath="Label"
             ItemsSource="{Binding GifFrameRateItems, Mode=OneWay}"
             SelectedItem="{Binding SelectedGifFrameRate, Mode=TwoWay}"
-            SelectedValue="{Binding ElementName=frameRateSelect, Path=ItemsSource[0]}"
             SelectedValuePath="."
             />
 

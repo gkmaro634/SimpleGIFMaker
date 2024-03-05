@@ -42,7 +42,6 @@
             DisplayMemberPath="Label"
             ItemsSource="{Binding ScaleSelectItems, Mode=OneWay}"
             SelectedItem="{Binding SelectedScale, Mode=TwoWay}"
-            SelectedValue="{Binding ElementName=scaleSelect, Path=ItemsSource[0]}"
             SelectedValuePath="."
             />
 

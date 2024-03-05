@@ -22,10 +22,6 @@
 
         double GifScale { get; set; }
 
-        int ScaledWidth => (int)(this.RoiWidth * GifScale);
-
-        int ScaledHeight => (int)(this.RoiHeight * GifScale);
-
         void UpdateFrom(IConvertCondition other);
     }
 }
