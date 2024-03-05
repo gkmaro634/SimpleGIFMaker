@@ -22,9 +22,6 @@ namespace SimpleGIFMaker.ViewModels
         [ObservableProperty]
         internal SelectableItem selectedGifFrameRate;
 
-        public IAsyncRelayCommand LoadedCommand { get; private set; }
-        public IAsyncRelayCommand UnloadedCommand { get; private set; }
-
         private TimeSpan start = TimeSpan.Zero;
         private TimeSpan end = TimeSpan.Zero;
 
@@ -46,9 +43,6 @@ namespace SimpleGIFMaker.ViewModels
             this.SelectedGifFrameRate = this.GifFrameRateItems[0];
 
             this.mediaPlayer.CutRangeChanged += OnCutRangeChanged;
-
-            this.LoadedCommand = new AsyncRelayCommand(this.Loaded);
-            this.UnloadedCommand = new AsyncRelayCommand(this.Unloaded);
         }
 
         private void OnCutRangeChanged(CutRange range)
@@ -60,7 +54,7 @@ namespace SimpleGIFMaker.ViewModels
             this.EndText = range.End.ToString(@"hh\:mm\:ss");
         }
 
-        //[RelayCommand]
+        [RelayCommand]
         internal async Task Loaded()
         {
             var condition = await this.convertConditionRepository.GetConvertConditionAsync(0);
@@ -80,7 +74,7 @@ namespace SimpleGIFMaker.ViewModels
             this.SelectedGifFrameRate = this.GifFrameRateItems.OrderBy(item => Math.Abs(item.Value - condition.GifFrameRate)).First();
         }
 
-        //[RelayCommand]
+        [RelayCommand]
         internal async Task Unloaded()
         {
             if (this.condition is null)

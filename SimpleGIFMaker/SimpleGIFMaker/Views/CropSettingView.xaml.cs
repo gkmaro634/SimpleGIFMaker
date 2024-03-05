@@ -21,12 +21,12 @@ namespace SimpleGIFMaker.Views
 
         private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            this.vm.LoadedCommand.ExecuteAsync(string.Empty).Wait();
+            this.vm.LoadedCommand.Execute(string.Empty);
         }
 
         private void UserControl_Unloaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            this.vm.UnloadedCommand.ExecuteAsync(string.Empty).Wait();
+            this.vm.UnloadedCommand.Execute(string.Empty);
         }
     }
 }

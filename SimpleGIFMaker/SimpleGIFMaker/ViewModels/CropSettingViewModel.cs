@@ -29,9 +29,6 @@ namespace SimpleGIFMaker.ViewModels
         [ObservableProperty]
         internal SelectableItem selectedScale;
 
-        public IAsyncRelayCommand LoadedCommand { get; private set; }
-        public IAsyncRelayCommand UnloadedCommand { get; private set; }
-
         private readonly IMediaPlayer mediaPlayer;
         private readonly IConvertConditionRepository convertConditionRepository;
 
@@ -49,9 +46,6 @@ namespace SimpleGIFMaker.ViewModels
             this.SelectedScale = this.ScaleSelectItems[0];
 
             this.mediaPlayer.CropRectChanged += OnCropRectChanged;
-
-            this.LoadedCommand = new AsyncRelayCommand(this.Loaded);
-            this.UnloadedCommand = new AsyncRelayCommand(this.Unloaded);
         }
 
         private void OnCropRectChanged(CropRect rect)
@@ -62,7 +56,7 @@ namespace SimpleGIFMaker.ViewModels
             this.CropRectHeight = rect.Height;
         }
 
-        //[RelayCommand]
+        [RelayCommand]
         internal async Task Loaded()
         {
             var condition = await this.convertConditionRepository.GetConvertConditionAsync(0);
@@ -80,7 +74,7 @@ namespace SimpleGIFMaker.ViewModels
             this.SelectedScale = this.ScaleSelectItems.OrderBy(item => Math.Abs(item.Value - condition.GifScale)).First();
         }
 
-        //[RelayCommand]
+        [RelayCommand]
         internal async Task Unloaded()
         {
             if (this.condition is null)

@@ -14,26 +14,21 @@ namespace SimpleGIFMaker.ViewModels
 
         private readonly IGifFileRepository gifFileRepository;
 
-        public IAsyncRelayCommand LoadedCommand { get; private set; }
-        public IAsyncRelayCommand UnloadedCommand { get; private set; }
-
         public ConvertResultWindowViewModel(
             IGifFileRepository gifFileRepository)
         {
             this.gifFileRepository = gifFileRepository;
             this.openExplorerAction = this.OpenExplorerImpl;
 
-            this.LoadedCommand = new AsyncRelayCommand(this.Loaded);
-            this.UnloadedCommand = new AsyncRelayCommand(this.Unloaded);
         }
 
-        //[RelayCommand]
+        [RelayCommand]
         internal async Task Loaded()
         {
             this.GifFile = await this.gifFileRepository!.GetGifFileAsync(0);
         }
 
-        //[RelayCommand]
+        [RelayCommand]
         internal async Task Unloaded()
         {
             await Task.CompletedTask;
