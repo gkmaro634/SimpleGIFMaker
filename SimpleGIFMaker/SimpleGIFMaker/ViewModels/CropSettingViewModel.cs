@@ -24,10 +24,10 @@ namespace SimpleGIFMaker.ViewModels
         internal int cropRectHeight;
 
         [ObservableProperty]
-        internal List<ScaleSelectItem> scaleSelectItems = new();
+        internal List<SelectableItem> scaleSelectItems = new();
 
         [ObservableProperty]
-        internal ScaleSelectItem selectedScale;
+        internal SelectableItem selectedScale;
 
         private readonly IMediaPlayer mediaPlayer;
         private readonly IConvertConditionRepository convertConditionRepository;
@@ -40,7 +40,7 @@ namespace SimpleGIFMaker.ViewModels
             var items = Enumerable.Range(1, 10).Select(v =>
             {
                 var label = v == 1 ? "1" : $"1/{v}";
-                return new ScaleSelectItem(label, 1d / (double)v);
+                return new SelectableItem(label, 1d / (double)v);
             });
             this.scaleSelectItems.AddRange(items);
             this.SelectedScale = this.ScaleSelectItems[0];

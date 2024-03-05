@@ -13,9 +13,32 @@
     >
     <UniformGrid Columns="2">
         <TextBlock Text="Start: " />
-        <TextBlock Text="{Binding StartText, Mode=OneWay}" />
+        <TextBox
+            IsReadOnly="True"
+            Text="{Binding StartText, Mode=OneWay}"
+            />
 
         <TextBlock Text="End: " />
-        <TextBlock Text="{Binding EndText, Mode=OneWay}" />
+        <TextBox
+            IsReadOnly="True"
+            Text="{Binding EndText, Mode=OneWay}"
+            />
+
+        <TextBlock Text="FrameRate: " />
+        <ComboBox
+            x:Name="frameRateSelect"
+            DisplayMemberPath="Label"
+            ItemsSource="{Binding GifFrameRateItems, Mode=OneWay}"
+            SelectedItem="{Binding SelectedGifFrameRate, Mode=TwoWay}"
+            SelectedValue="{Binding ElementName=frameRateSelect, Path=ItemsSource[0]}"
+            SelectedValuePath="."
+            />
+
+        <Rectangle />
+        <Rectangle />
+
+        <Rectangle />
+        <Rectangle />
+
     </UniformGrid>
 </UserControl>

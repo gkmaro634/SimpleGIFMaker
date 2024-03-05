@@ -44,20 +44,7 @@
             SelectedItem="{Binding SelectedScale, Mode=TwoWay}"
             SelectedValue="{Binding ElementName=scaleSelect, Path=ItemsSource[0]}"
             SelectedValuePath="."
-            >
-            <!--<ComboBox.Style>
-                <Style TargetType="ComboBox">
-                    <Setter Property="IsEnabled" Value="True" />
-                    <Style.Triggers>
-                        <DataTrigger
-                            Binding="{Binding MediaState, Mode=OneWay}"
-                            Value="Empty"
-                            >
-                            <Setter Property="IsEnabled" Value="False" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </ComboBox.Style>-->
-        </ComboBox>
+            />
+
     </UniformGrid>
 </UserControl>

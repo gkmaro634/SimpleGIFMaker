@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using SimpleGIFMaker.Domains;
 using SimpleGIFMaker.Domains.Repositories;
+using SimpleGIFMaker.Models;
 
 namespace SimpleGIFMaker.ViewModels
 {
@@ -15,6 +16,12 @@ namespace SimpleGIFMaker.ViewModels
         [ObservableProperty]
         internal string endText = string.Empty;
 
+        [ObservableProperty]
+        internal List<SelectableItem> gifFrameRateItems = new();
+
+        [ObservableProperty]
+        internal SelectableItem selectedGifFrameRate;
+
         private TimeSpan start = TimeSpan.Zero;
         private TimeSpan end = TimeSpan.Zero;
 
@@ -25,6 +32,15 @@ namespace SimpleGIFMaker.ViewModels
         {
             this.mediaPlayer = mediaPlayer;
             this.convertConditionRepository = convertConditionRepository;
+
+            var items = Enumerable.Range(0, 30).Select(v =>
+            {
+                var frameRate = 30 - v;
+                var label = $"{frameRate}";
+                return new SelectableItem(label, frameRate);
+            });
+            this.gifFrameRateItems.AddRange(items);
+            this.SelectedGifFrameRate = this.GifFrameRateItems[0];
 
             this.mediaPlayer.CutRangeChanged += OnCutRangeChanged;
         }
@@ -54,6 +70,8 @@ namespace SimpleGIFMaker.ViewModels
 
             this.StartText = condition.StartFrame.ToString(@"hh\:mm\:ss");
             this.EndText = condition.EndFrame.ToString(@"hh\:mm\:ss");
+
+            this.SelectedGifFrameRate = this.GifFrameRateItems.OrderBy(item => Math.Abs(item.Value - condition.GifFrameRate)).First();
         }
 
         [RelayCommand]

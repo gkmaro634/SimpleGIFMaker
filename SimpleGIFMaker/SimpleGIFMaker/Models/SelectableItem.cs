@@ -1,12 +1,12 @@
 ﻿namespace SimpleGIFMaker.Models
 {
-    internal class ScaleSelectItem
+    internal class SelectableItem
     {
         public string Label { get; set; } = string.Empty;
 
         public double Value { get; set; } = 0d;
 
-        public ScaleSelectItem(string name, double value)
+        public SelectableItem(string name, double value)
         {
             this.Label = name;
             this.Value = value;
