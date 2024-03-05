@@ -13,8 +13,8 @@
     >
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="200" />
-            <RowDefinition Height="600" />
+            <RowDefinition Height="232" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
@@ -23,6 +23,9 @@
             x:Name="editModeTab"
             Grid.Row="0"
             Width="600"
+            Background="LightGray"
+            BorderBrush="LightGray"
+            BorderThickness="1"
             SelectedIndex="{Binding SelectedTabIndex, Mode=OneWayToSource}"
             >
             <bh:Interaction.Triggers>
@@ -34,19 +37,19 @@
                 x:Name="gifConvertTab"
                 Header="GIF Convert"
                 >
-                <views:ConvertControlView />
+                <views:ConvertControlView Margin="8" />
             </TabItem>
             <TabItem
                 x:Name="cropSettingTab"
                 Header="Crop"
                 >
-                <views:CropSettingView />
+                <views:CropSettingView Margin="8" />
             </TabItem>
             <TabItem
                 x:Name="cutSettingTab"
-                Header="Cut"
+                Header="TimeRange"
                 >
-                <views:CutSettingView />
+                <views:CutSettingView Margin="8" />
             </TabItem>
         </TabControl>
 
@@ -56,7 +59,8 @@
             Grid.Row="1"
             Width="600"
             Height="600"
-            Background="LightGray"
+            Margin="0,8,0,0"
+            Background="Black"
             >
             <Viewbox
                 x:Name="viewBox"

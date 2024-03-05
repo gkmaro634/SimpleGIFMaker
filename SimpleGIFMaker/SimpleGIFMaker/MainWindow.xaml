@@ -7,12 +7,15 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://schemas.modernwpf.com/2019"
     xmlns:views="clr-namespace:SimpleGIFMaker.Views"
-    Title="MainWindow"
+    Title="Simple GIF Maker"
     Width="800"
     Height="600"
     ui:WindowHelper.UseModernWindowStyle="True"
-    SizeToContent="Height"
+    SizeToContent="WidthAndHeight"
     mc:Ignorable="d"
     >
-    <views:MediaView Grid.Row="0" />
+    <views:MediaView
+        Grid.Row="0"
+        Margin="8"
+        />
 </Window>
