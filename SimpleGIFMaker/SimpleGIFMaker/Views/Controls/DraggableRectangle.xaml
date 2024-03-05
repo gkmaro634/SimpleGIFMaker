@@ -1,0 +1,75 @@
+﻿<UserControl
+    x:Class="SimpleGIFMaker.Views.Controls.DraggableRectangle"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:SimpleGIFMaker.Views.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="thisControl"
+    d:DesignHeight="100"
+    d:DesignWidth="100"
+    mc:Ignorable="d"
+    >
+    <Canvas ClipToBounds="False">
+        <Rectangle
+            x:Name="maskTop"
+            Canvas.Left="0"
+            Canvas.Top="0"
+            ClipToBounds="True"
+            Fill="Black"
+            Opacity="0.5"
+            />
+        <Rectangle
+            x:Name="maskBottom"
+            Canvas.Left="0"
+            Canvas.Top="{Binding ElementName=thisControl, Path=EndY, Mode=OneWay}"
+            ClipToBounds="True"
+            Fill="Black"
+            Opacity="0.5"
+            />
+        <Rectangle
+            x:Name="maskLeft"
+            Canvas.Left="0"
+            Canvas.Top="{Binding ElementName=thisControl, Path=StartY, Mode=OneWay}"
+            ClipToBounds="True"
+            Fill="Black"
+            Opacity="0.5"
+            />
+        <Rectangle
+            x:Name="maskRight"
+            Canvas.Left="{Binding ElementName=thisControl, Path=EndX, Mode=OneWay}"
+            Canvas.Top="{Binding ElementName=thisControl, Path=StartY, Mode=OneWay}"
+            ClipToBounds="True"
+            Fill="Black"
+            Opacity="0.5"
+            />
+        <local:DraggableSymbol
+            x:Name="c1"
+            Canvas.Left="{Binding ElementName=thisControl, Path=StartX, Mode=OneWay}"
+            Canvas.Top="{Binding ElementName=thisControl, Path=StartY, Mode=OneWay}"
+            Rotation="0"
+            Scale="{Binding ElementName=thisControl, Path=SymbolScale, Mode=OneWay}"
+            />
+        <local:DraggableSymbol
+            x:Name="c2"
+            Canvas.Left="{Binding ElementName=thisControl, Path=StartX, Mode=OneWay}"
+            Canvas.Top="{Binding ElementName=thisControl, Path=EndY, Mode=OneWay}"
+            Rotation="270"
+            Scale="{Binding ElementName=thisControl, Path=SymbolScale, Mode=OneWay}"
+            />
+        <local:DraggableSymbol
+            x:Name="c3"
+            Canvas.Left="{Binding ElementName=thisControl, Path=EndX, Mode=OneWay}"
+            Canvas.Top="{Binding ElementName=thisControl, Path=EndY, Mode=OneWay}"
+            Rotation="180"
+            Scale="{Binding ElementName=thisControl, Path=SymbolScale, Mode=OneWay}"
+            />
+        <local:DraggableSymbol
+            x:Name="c4"
+            Canvas.Left="{Binding ElementName=thisControl, Path=EndX, Mode=OneWay}"
+            Canvas.Top="{Binding ElementName=thisControl, Path=StartY, Mode=OneWay}"
+            Rotation="90"
+            Scale="{Binding ElementName=thisControl, Path=SymbolScale, Mode=OneWay}"
+            />
+    </Canvas>
+</UserControl>
