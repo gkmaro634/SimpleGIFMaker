@@ -23,5 +23,10 @@ namespace SimpleGIFMaker.Views
         {
             this.vm?.LoadedCommand.Execute(string.Empty);
         }
+
+        private void UserControl_Unloaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            this.vm?.UnloadedCommand.Execute(string.Empty);
+        }
     }
 }

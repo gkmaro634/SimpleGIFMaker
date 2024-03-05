@@ -3,7 +3,6 @@ using CommunityToolkit.Mvvm.Input;
 using SimpleGIFMaker.Domains;
 using SimpleGIFMaker.Domains.Repositories;
 using System.Windows;
-using System.Windows.Controls;
 using static SimpleGIFMaker.Models.Definitions;
 
 namespace SimpleGIFMaker.ViewModels

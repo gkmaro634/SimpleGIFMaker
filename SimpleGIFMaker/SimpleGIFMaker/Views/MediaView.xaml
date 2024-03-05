@@ -13,14 +13,14 @@
     >
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="200" />
             <RowDefinition Height="600" />
-            <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
         <Grid
             x:Name="mediaRegion"
-            Grid.Row="0"
+            Grid.Row="1"
             Width="600"
             Height="600"
             Background="LightGray"
@@ -61,14 +61,28 @@
                         EndY="{Binding CropRectEndY, Mode=TwoWay}"
                         StartX="{Binding CropRectStartX, Mode=TwoWay}"
                         StartY="{Binding CropRectStartY, Mode=TwoWay}"
-                        />
+                        >
+                        <ctrls:DraggableRectangle.Style>
+                            <Style TargetType="ctrls:DraggableRectangle">
+                                <Setter Property="IsEditable" Value="False" />
+                                <Style.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding EditMode, Mode=OneWay}"
+                                        Value="CropSetting"
+                                        >
+                                        <Setter Property="IsEditable" Value="True" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ctrls:DraggableRectangle.Style>
+                    </ctrls:DraggableRectangle>
                 </Grid>
             </Viewbox>
         </Grid>
 
 
         <Grid
-            Grid.Row="1"
+            Grid.Row="2"
             Width="{Binding ElementName=mediaRegion, Path=ActualWidth}"
             Height="32"
             >
@@ -95,7 +109,8 @@
 
         <TabControl
             x:Name="editModeTab"
-            Grid.Row="2"
+            Grid.Row="0"
+            Width="600"
             SelectedIndex="{Binding SelectedTabIndex, Mode=OneWayToSource}"
             >
             <bh:Interaction.Triggers>

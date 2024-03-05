@@ -10,13 +10,11 @@
     d:DesignWidth="100"
     mc:Ignorable="d"
     >
-    <Canvas ClipToBounds="True">
+    <Canvas ClipToBounds="False">
         <Rectangle
             x:Name="maskTop"
             Canvas.Left="0"
             Canvas.Top="0"
-            Width="{Binding ElementName=thisControl, Path=ActualWidth, Mode=OneWay}"
-            Height="{Binding ElementName=thisControl, Path=StartY, Mode=OneWay}"
             ClipToBounds="True"
             Fill="Black"
             Opacity="0.5"
@@ -25,8 +23,6 @@
             x:Name="maskBottom"
             Canvas.Left="0"
             Canvas.Top="{Binding ElementName=thisControl, Path=EndY, Mode=OneWay}"
-            Width="{Binding ElementName=thisControl, Path=ActualWidth, Mode=OneWay}"
-            Height="{Binding ElementName=thisControl, Path=ActualHeight, Mode=OneWay}"
             ClipToBounds="True"
             Fill="Black"
             Opacity="0.5"
@@ -35,8 +31,6 @@
             x:Name="maskLeft"
             Canvas.Left="0"
             Canvas.Top="{Binding ElementName=thisControl, Path=StartY, Mode=OneWay}"
-            Width="{Binding ElementName=thisControl, Path=StartX, Mode=OneWay}"
-            Height="{Binding ElementName=thisControl, Path=RectHeight, Mode=OneWay}"
             ClipToBounds="True"
             Fill="Black"
             Opacity="0.5"
@@ -45,8 +39,6 @@
             x:Name="maskRight"
             Canvas.Left="{Binding ElementName=thisControl, Path=EndX, Mode=OneWay}"
             Canvas.Top="{Binding ElementName=thisControl, Path=StartY, Mode=OneWay}"
-            Width="{Binding ElementName=thisControl, Path=ActualWidth, Mode=OneWay}"
-            Height="{Binding ElementName=thisControl, Path=RectHeight, Mode=OneWay}"
             ClipToBounds="True"
             Fill="Black"
             Opacity="0.5"

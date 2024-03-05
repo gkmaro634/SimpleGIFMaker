@@ -9,14 +9,22 @@ namespace SimpleGIFMaker.Views.Controls
     /// </summary>
     public partial class DraggableRectangle : UserControl
     {
+        public static readonly DependencyProperty DragCompletedCommandProperty =
+            DependencyProperty.Register("DragCompletedCommand", typeof(ICommand), typeof(DraggableRectangle), new PropertyMetadata(null));
+
         public ICommand DragCompletedCommand
         {
             get { return (ICommand)GetValue(DragCompletedCommandProperty); }
             set { SetValue(DragCompletedCommandProperty, value); }
         }
 
-        public static readonly DependencyProperty DragCompletedCommandProperty =
-            DependencyProperty.Register("DragCompletedCommand", typeof(ICommand), typeof(DraggableRectangle), new PropertyMetadata(null));
+        public static readonly DependencyProperty IsEditableProperty = DependencyProperty.Register("IsEditable", typeof(bool), typeof(DraggableRectangle), new PropertyMetadata(false, OnIsEditableChanged));
+
+        public bool IsEditable
+        {
+            get { return (bool)GetValue(IsEditableProperty); }
+            set { SetValue(IsEditableProperty, value); }
+        }
 
 
         public static readonly DependencyProperty StartXProperty = DependencyProperty.Register("StartX", typeof(double), typeof(DraggableRectangle), new PropertyMetadata(0.0, OnPositionChanged));
@@ -189,11 +197,39 @@ namespace SimpleGIFMaker.Views.Controls
                 control.UpdateSize();
             }
         }
-
         private void UpdateSize()
         {
+            this.maskTop.Width = Math.Max(0, this.ActualWidth);
+            this.maskTop.Height = Math.Max(0, this.StartY);
+
+            this.maskBottom.Width = Math.Max(0, this.ActualWidth);
+            this.maskBottom.Height = Math.Max(0, this.ActualHeight - this.EndY);
+
+            this.maskLeft.Width = Math.Max(0, this.StartX);
+            this.maskLeft.Height = Math.Max(0, this.EndY - this.StartY);
+
+            this.maskRight.Width = Math.Max(0, this.ActualWidth - this.EndX);
+            this.maskRight.Height = Math.Max(0, this.EndY - this.StartY);
+
             this.RectWidth = this.EndX - this.StartX;
             this.RectHeight = this.EndY - this.StartY;
+        }
+
+        private static void OnIsEditableChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var control = d as DraggableRectangle;
+            if (control != null)
+            {
+                control.UpdateSymbolState();
+            }
+        }
+
+        private void UpdateSymbolState()
+        {
+            foreach (var symbol in this.cornerSymbols)
+            {
+                symbol.Visibility = this.IsEditable ? Visibility.Visible : Visibility.Hidden;
+            }
         }
     }
 }
