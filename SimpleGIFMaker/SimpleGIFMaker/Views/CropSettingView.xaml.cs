@@ -9,24 +9,24 @@ namespace SimpleGIFMaker.Views
     /// </summary>
     public partial class CropSettingView : UserControl
     {
-        private CropSettingViewModel? vm;
+        private CropSettingViewModel vm;
 
         public CropSettingView()
         {
             InitializeComponent();
 
-            this.vm = Ioc.Default.GetService<CropSettingViewModel>();
+            this.vm = Ioc.Default.GetService<CropSettingViewModel>()!;
             this.DataContext = vm;
         }
 
         private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            this.vm?.LoadedCommand.Execute(string.Empty);
+            this.vm.LoadedCommand.ExecuteAsync(string.Empty).Wait();
         }
 
         private void UserControl_Unloaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            this.vm?.UnloadedCommand.Execute(string.Empty);
+            this.vm.UnloadedCommand.ExecuteAsync(string.Empty).Wait();
         }
     }
 }

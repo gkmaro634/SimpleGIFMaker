@@ -22,6 +22,11 @@ namespace SimpleGIFMaker.Domains
 
         public int Rotation { get; set; }
 
+        public Movie()
+        {
+            this.Path = string.Empty;
+        }
+
         public Movie(string path)
         {
             this.Path = path;

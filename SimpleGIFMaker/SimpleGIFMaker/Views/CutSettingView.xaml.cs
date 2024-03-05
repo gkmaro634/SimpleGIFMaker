@@ -9,24 +9,24 @@ namespace SimpleGIFMaker.Views
     /// </summary>
     public partial class CutSettingView : UserControl
     {
-        private CutSettingViewModel? vm;
+        private CutSettingViewModel vm;
 
         public CutSettingView()
         {
             InitializeComponent();
 
-            this.vm = Ioc.Default.GetService<CutSettingViewModel>();
+            this.vm = Ioc.Default.GetService<CutSettingViewModel>()!;
             this.DataContext = this.vm;
         }
 
         private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            this.vm?.LoadedCommand.Execute(string.Empty);
+            this.vm.LoadedCommand.ExecuteAsync(string.Empty).Wait();
         }
 
-        private void UserControl_Unloaded(object sender, System.Windows.RoutedEventArgs e)
+        private async void UserControl_Unloaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            this.vm?.UnloadedCommand.Execute(string.Empty);
+            this.vm.UnloadedCommand.ExecuteAsync(string.Empty).Wait();
         }
     }
 }

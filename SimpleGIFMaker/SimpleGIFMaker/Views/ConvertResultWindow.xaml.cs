@@ -21,12 +21,12 @@ namespace SimpleGIFMaker.Views
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            this.vm.LoadedCommand.Execute("");
+            this.vm.LoadedCommand.ExecuteAsync("").Wait();
         }
 
         private void Window_Unloaded(object sender, RoutedEventArgs e)
         {
-            this.vm.UnloadedCommand.Execute("");
+            this.vm.UnloadedCommand.ExecuteAsync("").Wait();
         }
     }
 }

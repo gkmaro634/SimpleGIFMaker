@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
-using SimpleGIFMaker.DataSource.Fake;
+using SimpleGIFMaker.DataSource.FileSystem;
 using SimpleGIFMaker.Domains;
 using SimpleGIFMaker.Domains.Repositories;
 using SimpleGIFMaker.ViewModels;
@@ -18,9 +18,9 @@ namespace SimpleGIFMaker
             Ioc.Default.ConfigureServices(
                 new ServiceCollection()
                 .AddSingleton<IMediaPlayer, MediaPlayer>()
-                .AddSingleton<IConvertConditionRepository, FakeConvertConditionRepository>()
-                .AddSingleton<IMovieRepository, FakeMovieRepository>()
-                .AddSingleton<IGifFileRepository, FakeGifFileRepository>()
+                .AddSingleton<IConvertConditionRepository, FsConvertConditionRepository>()
+                .AddSingleton<IMovieRepository, FsMovieRepository>()
+                .AddSingleton<IGifFileRepository, FsGifFileRepository>()
                 .AddTransient<MediaViewModel>()
                 .AddTransient<ConvertControlViewModel>()
                 .AddTransient<CropSettingViewModel>()

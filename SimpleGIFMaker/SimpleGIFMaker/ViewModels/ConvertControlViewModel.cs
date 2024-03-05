@@ -26,6 +26,9 @@ namespace SimpleGIFMaker.ViewModels
 
         internal Action showResultWindowAction = () => { };
 
+        public IAsyncRelayCommand LoadedCommand { get; private set; }
+        public IAsyncRelayCommand UnloadedCommand { get; private set; }
+
         public ConvertControlViewModel(
             IMediaPlayer mediaPlayer,
             IMovieRepository movieRepository,
@@ -39,15 +42,18 @@ namespace SimpleGIFMaker.ViewModels
 
             this.selectMovieFileFunc = this.SelectMovieFile;
             this.showResultWindowAction = this.ShowConvertResult;
+
+            this.LoadedCommand = new AsyncRelayCommand(this.Loaded);
+            this.UnloadedCommand = new AsyncRelayCommand(this.Unloaded);
         }
 
-        [RelayCommand]
+        //[RelayCommand]
         internal async Task Loaded()
         {
             await Task.CompletedTask;
         }
 
-        [RelayCommand]
+        //[RelayCommand]
         internal async Task Unloaded()
         {
             await Task.CompletedTask;
