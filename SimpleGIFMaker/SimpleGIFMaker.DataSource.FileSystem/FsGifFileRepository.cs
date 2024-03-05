@@ -27,7 +27,7 @@ namespace SimpleGIFMaker.DataSource.FileSystem
             var now = DateTime.Now;
             var timestamp = now.ToString("yyyyMMddHHmmss");
             var gifDirPath = Path.Combine(this.jsonDirPath, timestamp);
-            if (Directory.Exists (gifDirPath) == false)
+            if (Directory.Exists(gifDirPath) == false)
             {
                 Directory.CreateDirectory(gifDirPath);
             }

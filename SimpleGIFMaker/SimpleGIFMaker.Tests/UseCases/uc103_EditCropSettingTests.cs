@@ -1,7 +1,6 @@
 using NSubstitute;
 using SimpleGIFMaker.Domains;
 using SimpleGIFMaker.Domains.Repositories;
-using SimpleGIFMaker.Models;
 using SimpleGIFMaker.ViewModels;
 
 namespace SimpleGIFMaker.Tests.UseCases

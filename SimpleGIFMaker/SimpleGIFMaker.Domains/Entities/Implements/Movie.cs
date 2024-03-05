@@ -1,5 +1,4 @@
 ﻿using System.Diagnostics;
-using System.Runtime.CompilerServices;
 using System.Text.Json;
 
 namespace SimpleGIFMaker.Domains
@@ -71,7 +70,7 @@ namespace SimpleGIFMaker.Domains
                 var psi = new ProcessStartInfo
                 {
                     FileName = ffmpegPath,
-                    Arguments = $"-i \"{filePath}\" -ss {condition.StartFrame.ToString()} -t {condition.TrimLength.TotalSeconds} -vf \"{transposeStr}crop={width}:{height}:{x}:{y},scale={width*condition.GifScale}:{height*condition.GifScale},split [a][b];[a] palettegen [p];[b][p] paletteuse\" -r {condition.GifFrameRate} -b:v 1M {gifFilePath} -progress -",
+                    Arguments = $"-i \"{filePath}\" -ss {condition.StartFrame.ToString()} -t {condition.TrimLength.TotalSeconds} -vf \"{transposeStr}crop={width}:{height}:{x}:{y},scale={width * condition.GifScale}:{height * condition.GifScale},split [a][b];[a] palettegen [p];[b][p] paletteuse\" -r {condition.GifFrameRate} -b:v 1M {gifFilePath} -progress -",
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
                     CreateNoWindow = false//true

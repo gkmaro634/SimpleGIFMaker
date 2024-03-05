@@ -1,5 +1,3 @@
-using SimpleGIFMaker.Domains;
-
 namespace SimpleGIFMaker.Tests.UseCases
 {
     public class uc303_SeekMovieTests : IDisposable
