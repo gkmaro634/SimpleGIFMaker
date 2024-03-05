@@ -9,16 +9,14 @@ namespace SimpleGIFMaker.Views
     /// </summary>
     public partial class MediaView : UserControl
     {
+        private MediaViewModel vm;
+
         public MediaView()
         {
             InitializeComponent();
 
-            this.DataContext = Ioc.Default.GetService<MediaViewModel>();
-        }
-
-        private void DraggableRectangle_DragLeave(object sender, System.Windows.DragEventArgs e)
-        {
-            Console.WriteLine("aa");
+            this.vm = Ioc.Default.GetService<MediaViewModel>();
+            this.DataContext = this.vm;
         }
     }
 }

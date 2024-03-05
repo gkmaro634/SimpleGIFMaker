@@ -9,6 +9,16 @@ namespace SimpleGIFMaker.Views.Controls
     /// </summary>
     public partial class DraggableRectangle : UserControl
     {
+        public ICommand DragCompletedCommand
+        {
+            get { return (ICommand)GetValue(DragCompletedCommandProperty); }
+            set { SetValue(DragCompletedCommandProperty, value); }
+        }
+
+        public static readonly DependencyProperty DragCompletedCommandProperty =
+            DependencyProperty.Register("DragCompletedCommand", typeof(ICommand), typeof(DraggableRectangle), new PropertyMetadata(null));
+
+
         public static readonly DependencyProperty StartXProperty = DependencyProperty.Register("StartX", typeof(double), typeof(DraggableRectangle), new PropertyMetadata(0.0, OnPositionChanged));
 
         public double StartX
@@ -154,9 +164,14 @@ namespace SimpleGIFMaker.Views.Controls
 
         private void OnMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            isDragging = false;
-            var draggableControl = sender as DraggableSymbol;
-            draggableControl!.ReleaseMouseCapture();
+            if (isDragging)
+            {
+                this.DragCompletedCommand?.Execute(this);
+
+                isDragging = false;
+                var draggableControl = sender as DraggableSymbol;
+                draggableControl!.ReleaseMouseCapture();
+            }
         }
 
         private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e)

@@ -35,7 +35,9 @@ namespace SimpleGIFMaker.Tests.UseCases
             this.convertConditionRepository.GetConvertConditionAsync(0).Returns(conditionMock);
 
             //
-            await this.vm.EntryCrop();
+            this.vm.SelectedTabIndex = 1;
+            await this.vm.SelectTabCommand.ExecuteAsync("");
+
             this.subVm.LoadedCommand.Execute("");
 
             //

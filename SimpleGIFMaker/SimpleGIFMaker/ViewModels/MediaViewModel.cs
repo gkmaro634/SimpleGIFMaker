@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using SimpleGIFMaker.Domains;
 using SimpleGIFMaker.Domains.Repositories;
 using System.Windows;
+using System.Windows.Controls;
 using static SimpleGIFMaker.Models.Definitions;
 
 namespace SimpleGIFMaker.ViewModels
@@ -45,6 +46,9 @@ namespace SimpleGIFMaker.ViewModels
         [ObservableProperty]
         internal double scaleInv = 1d;
 
+        [ObservableProperty]
+        internal int selectedTabIndex = 0;
+
         private readonly IMediaPlayer mediaPlayer;
         private readonly IMovieRepository movieRepository;
         private readonly IConvertConditionRepository convertConditionRepository;
@@ -78,6 +82,26 @@ namespace SimpleGIFMaker.ViewModels
         }
 
         [RelayCommand]
+        internal async Task SelectTab()
+        {
+            if (this.SelectedTabIndex == 0)
+            {
+                await this.EntryConvertControl();
+            }
+            else if (this.SelectedTabIndex == 1)
+            {
+                await this.EntryCrop();
+            }
+            else if (this.SelectedTabIndex == 2)
+            {
+                await this.EntryCut();
+            }
+            else
+            {
+                return;
+            }
+        }
+
         internal async Task EntryConvertControl()
         {
             //var condition = await this.convertConditionRepository.GetConvertConditionAsync(0);
@@ -89,9 +113,9 @@ namespace SimpleGIFMaker.ViewModels
             //this.ConvertCondition = condition;
 
             this.EditMode = EditModeType.ConvertSetting;
+            await Task.CompletedTask;
         }
 
-        [RelayCommand]
         internal async Task EntryCrop()
         {
             //var condition = await this.convertConditionRepository.GetConvertConditionAsync(0);
@@ -103,9 +127,9 @@ namespace SimpleGIFMaker.ViewModels
             //this.ConvertCondition = condition;
 
             this.EditMode = EditModeType.CropSetting;
+            await Task.CompletedTask;
         }
 
-        [RelayCommand]
         internal async Task EntryCut()
         {
             //var condition = await this.convertConditionRepository.GetConvertConditionAsync(0);
@@ -117,6 +141,7 @@ namespace SimpleGIFMaker.ViewModels
             //this.ConvertCondition = condition;
 
             this.EditMode = EditModeType.CutSetting;
+            await Task.CompletedTask;
         }
 
         [RelayCommand]
@@ -141,15 +166,29 @@ namespace SimpleGIFMaker.ViewModels
             this.MediaState = MediaStateType.Pause;
         }
 
+        /// <summary>
+        /// クロップ範囲更新
+        /// </summary>
+        /// <param name="modifiedCropRect"></param>
+        /// <remarks>
+        /// ドラッグ操作完了時に呼び出される
+        /// </remarks>
         [RelayCommand]
-        internal void UpdateCropRect(CropRect modifiedCropRect)
+        internal void UpdateCropRect()
         {
-            if (modifiedCropRect is not null)
-            {
-                this.mediaPlayer.UpdateCropRect(modifiedCropRect);
-            }
+            var cropRectWidth = this.CropRectEndX - this.CropRectStartX;
+            var cropRectHeight = this.CropRectEndY - this.CropRectStartY;
+            var modifiedCropRect = new CropRect(this.CropRectStartX, this.CropRectStartY, cropRectWidth, cropRectHeight);
+            this.mediaPlayer.UpdateCropRect(modifiedCropRect);
         }
 
+        /// <summary>
+        /// 拡大縮小率更新
+        /// </summary>
+        /// <param name="e"></param>
+        /// <remarks>
+        /// ViewBoxのSizeChangedEventで呼び出される
+        /// </remarks>
         [RelayCommand]
         internal void UpdateScale(SizeChangedEventArgs e)
         {
@@ -159,7 +198,6 @@ namespace SimpleGIFMaker.ViewModels
                 this.Scale = scaledWidth / this.CurrentMovie.Width;
                 this.ScaleInv = 1d / this.Scale;
             }
-
         }
     }
 }

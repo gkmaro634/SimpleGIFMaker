@@ -29,6 +29,7 @@
                 x:Name="viewBox"
                 MaxWidth="{Binding ElementName=mediaRegion, Path=ActualWidth}"
                 MaxHeight="{Binding ElementName=mediaRegion, Path=ActualHeight}"
+                Margin="8"
                 Stretch="Uniform"
                 >
                 <bh:Interaction.Triggers>
@@ -55,6 +56,7 @@
                         Width="{Binding CurrentMovie.Width, Mode=OneWay}"
                         Height="{Binding CurrentMovie.Height, Mode=OneWay}"
                         Panel.ZIndex="2"
+                        DragCompletedCommand="{Binding UpdateCropRectCommand, Mode=OneWay}"
                         EndX="{Binding CropRectEndX, Mode=TwoWay}"
                         EndY="{Binding CropRectEndY, Mode=TwoWay}"
                         StartX="{Binding CropRectStartX, Mode=TwoWay}"
@@ -91,14 +93,32 @@
                 />
         </Grid>
 
-        <TabControl Grid.Row="2">
-            <TabItem Header="GIF Convert">
+        <TabControl
+            x:Name="editModeTab"
+            Grid.Row="2"
+            SelectedIndex="{Binding SelectedTabIndex, Mode=OneWayToSource}"
+            >
+            <bh:Interaction.Triggers>
+                <bh:EventTrigger EventName="SelectionChanged">
+                    <bh:InvokeCommandAction Command="{Binding SelectTabCommand, Mode=OneWay}" />
+                </bh:EventTrigger>
+            </bh:Interaction.Triggers>
+            <TabItem
+                x:Name="gifConvertTab"
+                Header="GIF Convert"
+                >
                 <views:ConvertControlView />
             </TabItem>
-            <TabItem Header="Crop">
+            <TabItem
+                x:Name="cropSettingTab"
+                Header="Crop"
+                >
                 <views:CropSettingView />
             </TabItem>
-            <TabItem Header="Cut">
+            <TabItem
+                x:Name="cutSettingTab"
+                Header="Cut"
+                >
                 <views:CutSettingView />
             </TabItem>
         </TabControl>

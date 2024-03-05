@@ -35,11 +35,13 @@ namespace SimpleGIFMaker.Tests.UseCases
             var conditionMock = Substitute.For<IConvertCondition>();
             this.convertConditionRepository.GetConvertConditionAsync(0).Returns(conditionMock);
 
-            await this.vm.EntryCut();
+            this.vm.SelectedTabIndex = 2;
+            await this.vm.SelectTabCommand.ExecuteAsync("");
             this.subVm.LoadedCommand.Execute("");
 
             //
-            await this.vm.EntryConvertControl();
+            this.vm.SelectedTabIndex = 0;
+            await this.vm.SelectTabCommand.ExecuteAsync("");
             this.subVm.UnloadedCommand.Execute("");
 
             //
