@@ -2,7 +2,6 @@
 using CommunityToolkit.Mvvm.Input;
 using SimpleGIFMaker.Domains;
 using SimpleGIFMaker.Domains.Repositories;
-using System.Globalization;
 using System.Windows;
 using static SimpleGIFMaker.Models.Definitions;
 

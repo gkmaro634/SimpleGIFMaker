@@ -1,10 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.WindowsAPICodePack.Dialogs;
 using SimpleGIFMaker.Domains;
 using SimpleGIFMaker.Domains.Repositories;
-using SimpleGIFMaker.Views;
-using static SimpleGIFMaker.Models.Definitions;
 
 namespace SimpleGIFMaker.ViewModels
 {
@@ -22,6 +19,7 @@ namespace SimpleGIFMaker.ViewModels
         {
             this.gifFileRepository = gifFileRepository;
             this.openExplorerAction = this.OpenExplorerImpl;
+
         }
 
         [RelayCommand]
@@ -47,7 +45,7 @@ namespace SimpleGIFMaker.ViewModels
             if (this.GifFile is null) { return; }
 
             var directoryPath = System.IO.Path.GetDirectoryName(this.GifFile.Path);
-            if (System.IO.Directory.Exists(directoryPath) )
+            if (System.IO.Directory.Exists(directoryPath))
             {
                 using (var p = System.Diagnostics.Process.Start("explorer.exe", directoryPath!))
                 {

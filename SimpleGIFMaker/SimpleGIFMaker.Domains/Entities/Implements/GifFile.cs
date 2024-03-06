@@ -14,6 +14,11 @@ namespace SimpleGIFMaker.Domains
 
         public double FrameRate { get; set; }
 
+        public GifFile()
+        {
+            this.Path = string.Empty;
+        }
+
         public GifFile(string path)
         {
             this.Path = path;

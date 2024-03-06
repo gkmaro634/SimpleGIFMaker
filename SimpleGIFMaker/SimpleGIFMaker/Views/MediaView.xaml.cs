@@ -72,7 +72,7 @@ namespace SimpleGIFMaker.Views
 
                 this.prevSeekbarValue = 0;
             }
-            else if(e.PropertyName == nameof(this.vm.MediaState))
+            else if (e.PropertyName == nameof(this.vm.MediaState))
             {
                 if (this.vm.MediaState == Models.Definitions.MediaStateType.Playing)
                 {

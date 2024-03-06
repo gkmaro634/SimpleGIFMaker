@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace SimpleGIFMaker.Domains
+﻿namespace SimpleGIFMaker.Domains
 {
     public interface IMediaPlayer
     {

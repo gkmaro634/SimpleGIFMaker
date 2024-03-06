@@ -84,6 +84,7 @@ namespace SimpleGIFMaker.ViewModels
 
             this.condition.StartFrame = this.start;
             this.condition.EndFrame = this.end;
+            this.condition.GifFrameRate = (int)this.SelectedGifFrameRate.Value;
 
             await this.convertConditionRepository.UpdateConvertConditionAsync(0, this.condition);
         }
